@@ -62,7 +62,7 @@ main{padding-block:16px 48px}
 .area{margin-top:12px}
 .area>h3{font:600 16px var(--display);color:var(--muted);margin:0 0 10px;padding-bottom:6px;border-bottom:1px dashed var(--line)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:18px}
-.card{scroll-margin-top:120px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0;content-visibility:auto;contain-intrinsic-size:auto 900px}  /* 畫面外的卡片先不畫：景點多時捲動才不會卡 */
+.card{scroll-margin-top:120px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0;content-visibility:auto;contain-intrinsic-size:auto 1050px}  /* 畫面外的卡片先不畫：景點多時捲動才不會卡 */
 
 .car{position:relative;aspect-ratio:16/10;background:var(--ai-soft);overflow:hidden;max-width:100%;touch-action:pan-y}
 .track{display:flex;height:100%;transition:transform .55s ease}
@@ -223,6 +223,23 @@ select,input{border-radius:10px!important}
 .basketfab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;background:var(--kin);color:#fff!important;text-decoration:none;font:700 15px var(--body);padding:12px 18px;border-radius:999px;box-shadow:0 8px 24px rgba(217,105,46,.35)}
 .basketfab b{font-family:var(--mono);background:#fff;color:var(--kin);border-radius:999px;padding:0 8px;margin:0 2px}
 .basketfab[hidden]{display:none!important}
+.cvoff .card{content-visibility:visible!important}
+.colg .lbopen{display:block;width:100%;height:100%;padding:0;border:0;background:none;cursor:zoom-in;position:relative}
+.colg img{width:100%;height:100%;object-fit:cover;display:block}
+.colg .cnt{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.6);color:#fff;font:600 12px var(--body);padding:3px 10px;border-radius:999px}
+.lb{position:fixed;inset:0;z-index:1000;background:#0B0D14;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 8px) 12px calc(env(safe-area-inset-bottom,0px) + 12px);color:#fff}
+.lb[hidden]{display:none!important}
+.lbtop{display:flex;align-items:center;gap:10px;font:600 15px var(--body);min-height:44px}
+.lbname{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lbcount{font:600 13px var(--mono);opacity:.8}
+.lbx{transform:none!important;width:44px;height:44px;border:0;border-radius:999px;background:rgba(255,255,255,.14);color:#fff;font-size:20px;cursor:pointer}
+.lbstage{flex:1;min-height:0;position:relative;display:flex;align-items:center;justify-content:center;touch-action:pan-y}
+.lbimg{max-width:100%;max-height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
+.lbnav{position:absolute;top:calc(50% - 32px);transform:none!important;width:44px;height:64px;border:0;border-radius:10px;background:rgba(255,255,255,.14);color:#fff;font-size:30px;cursor:pointer}
+.lbnav.p{left:0}.lbnav.n{right:0}
+.lbcap{margin:10px 0 0;font-size:14px;line-height:1.5;text-align:center}
+.lbcap small{display:block;font-size:11px;opacity:.65;margin-top:2px;word-break:break-all}
+html.lbon,html.lbon body{overflow:hidden}
 .src{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:4px 0 0;font-size:13px;line-height:1.5}
 .src b{font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.08em}
 .src a{color:var(--ai);text-decoration:none;border-bottom:1px solid var(--ai-soft)}
@@ -236,7 +253,7 @@ select,input{border-radius:10px!important}
 .hero .back{margin:6px 0 0;font-size:15px}
 .hero .back a{color:var(--ai);font-weight:700;text-decoration:none}
 </style>
-<script src="jds.js?v=67efed56"></script>
+<script src="jds.js?v=c090dabd"></script>
 <style id="taste">/* 極簡編輯：骨白底、白卡、1px 淡線、幾乎無陰影、墨黑主按鈕、低飽和藍點綴 */
 :root{--paper:#F7F6F3;--surface:#FFFFFF;--ink:#2F3437;--muted:#787774;--line:#EAEAEA;--ai:#1F6C9F;--ai-soft:#E1F3FE;--kin:#2F3437;--kin-soft:#F1F0EC;--warn:#9F2F2D;
 --shadow:0 2px 8px rgba(0,0,0,.04);--shadow-sm:0 0 0 rgba(0,0,0,0);--ease:cubic-bezier(.16,1,.3,1);--grain:none}
@@ -334,7 +351,7 @@ header.site{background:rgba(255,255,255,.9)!important}
 <main class="wrap" id="list"></main>
 <footer class="wrap"><p>照片取自 Wikimedia Commons，作者與授權標在每張照片下方。照片存在「sights-img」資料夾，搬移這個網頁時請整個資料夾一起帶走。開放時間、票價以官網為準（資料查核日 2026/10/3）。</p></footer>
 <script>
-const S = [{"id": "naraprison", "name": "奈良監獄博物館（奈良監獄ミュージアム・ならかんごくミュージアム）", "group": "kyoto", "sub": true, "areaLabel": "奈良", "intro": "2026 年 4 月 27 日開館。舊奈良監獄 1908 年完工，是明治政府「五大監獄」中唯一完整保存下來的一座，紅磚建築群是國家重要文化財，紅磚是當年受刑人在刑務作業中和工匠一起燒製的。星野集團把它活化成博物館和飯店「星のや奈良監獄」：保存區可以走進保留原貌的舍房長廊與中央看守所，三棟展示棟分別以「歷史與建築」「身體與心」「監獄與社會」為主題，最後一棟展出當代藝術家受監獄啟發的作品。冬天另有夜間活動「PRISON BY NIGHT」（2026/12/4–2027/1/31），紅磚建築打燈，牆上投影參觀者留下的「光之文字」。", "highlights": ["表門：兩座圓頂小塔夾著拱門的紅磚正門，最經典的拍照點", "保存區：明亮天窗下的舍房長廊與牢房、中央看守所", "展示棟：監獄建築與歷史、受刑人的一天，以及當代藝術「監獄與社會」", "冬季限定 PRISON BY NIGHT（2026/12/4–2027/1/31，1/12–14 除外）：18:00–21:00 夜間燈光與投影，要預約", "館內咖啡廳與商店：紅磚造型咖哩麵包、地方汽水"], "hours": "9:00–17:00（最後入館 16:00）；無固定休館日（維修休館時官網公告）；冬季夜間活動 18:00–21:00（最後入場 20:00）", "fee": "日本國外居住者 3,500 円、日本居住者 2,500 円、大學・高中生 1,500 円、小・國中生 700 円、學齡前免費；夜間活動：大人 3,000 円、大學・高中 2,000 円、小・國中 1,000 円", "season": "", "tickets": [{"item": "入館門票（日期・時段指定）", "price": "國外居住大人 3,500 円／大學・高中 1,500 円／小・國中 700 円／學齡前免費", "url": "https://hoshinoresorts.com/nara-prison-museum/ja/visit/", "need_booking": true, "note": "人數、時段限定的事前預約制；購買後不能改日期或人數，要先取消再重訂。入館時可能確認居住地。"}, {"item": "PRISON BY NIGHT : Light & Echoes（冬季夜間活動）", "price": "大人 3,000 円／大學・高中 2,000 円／小・國中 1,000 円／學齡前免費", "url": "https://hoshinoresorts.com/nara-prison-museum/ja/activities-events/prison-by-night/", "need_booking": true, "note": "2026/12/4–2027/1/31（1/12–14 除外），18:00–21:00（20:00 最後入場）；只有住京都的 1/29–1/31 趕得上。"}], "tips": ["2027/1/29–2/6 每天開館（9:00–17:00，16:00 停止入館）；夜間活動只到 1/31（日）。", "從伏見稻荷住處：JR 奈良線稻荷站搭「みやこ路快速」直達 JR 奈良站約 42 分、680 円，西口 11 號站牌搭往「奈良監獄ミュージアム前」的直達巴士約 25 分（大人 250 円）。", "從西九條住處：JR 大和路快速直達 JR 奈良站約 45 分、750 円，再轉直達巴士；近鐵奈良站 2 號站牌也有直達巴士（約 18 分）。", "館內空間有限，行李箱、嬰兒車不能帶進館；明治建築有部分高低差，有繞行路線，可向櫃台詢問。", "主題是監獄與自由、人權，內容偏嚴肅，國小高年級以上和長輩比較有感；可以和東大寺、奈良公園排同一天（博物館在奈良公園北邊）。"], "trip": [{"label": "從京都（京都站・JR 奈良線）", "total_min": 73, "total_price": "約 970 円"}, {"label": "從大阪（難波）搭近鐵", "total_min": 66, "total_price": "約 930 円"}], "access": "", "addr": "奈良監獄博物館", "official": "https://hoshinoresorts.com/nara-prison-museum/ja/", "images": [{"file": "sights-img/naraprison/01.jpg", "caption": "紅磚表門（兩座圓頂小塔）", "credit": "星野リゾート 奈良監獄ミュージアム公式サイト, https://hoshinoresorts.com/nara-prison-museum/ja/"}, {"file": "sights-img/naraprison/02.jpg", "caption": "保存區的舍房長廊", "credit": "星野リゾート 奈良監獄ミュージアム公式サイト, https://hoshinoresorts.com/nara-prison-museum/ja/"}, {"file": "sights-img/naraprison/03.jpg", "caption": "紅磚舍房與博物館入口", "credit": "星野リゾート 奈良監獄ミュージアム公式サイト, https://hoshinoresorts.com/nara-prison-museum/ja/"}, {"file": "sights-img/naraprison/04.jpg", "caption": "展示棟：明治五大監獄的建築模型", "credit": "星野リゾート 奈良監獄ミュージアム公式サイト, https://hoshinoresorts.com/nara-prison-museum/ja/"}, {"file": "sights-img/naraprison/05.jpg", "caption": "展示棟內部", "credit": "星野リゾート 奈良監獄ミュージアム公式サイト, https://hoshinoresorts.com/nara-prison-museum/ja/"}, {"file": "sights-img/naraprison/06.jpg", "caption": "冬季夜間活動 PRISON BY NIGHT：長廊的光影演出", "credit": "星野リゾート 奈良監獄ミュージアム公式サイト, https://hoshinoresorts.com/nara-prison-museum/ja/"}, {"file": "sights-img/naraprison/07.jpg", "caption": "冬季夜間活動：牢房門上的投影", "credit": "星野リゾート 奈良監獄ミュージアム公式サイト, https://hoshinoresorts.com/nara-prison-museum/ja/"}, {"file": "sights-img/naraprison/08.jpg", "caption": "冬季夜間活動：夜色中的紅磚舍房", "credit": "星野リゾート 奈良監獄ミュージアム公式サイト, https://hoshinoresorts.com/nara-prison-museum/ja/"}, {"file": "sights-img/naraprison/09.jpg", "caption": "紅磚外牆與枯黃草地（3 月中旬攝）", "credit": "663highland, CC BY 2.5, https://commons.wikimedia.org/wiki/File:130316_Nara_Juvenile_Prison_Nara_Japan03s3.jpg"}, {"file": "sights-img/naraprison/10.jpg", "caption": "紅磚的舊廳舍（3 月中旬攝）", "credit": "663highland, CC BY 2.5, https://commons.wikimedia.org/wiki/File:130316_Nara_Juvenile_Prison_Nara_Japan05s3.jpg"}], "book": true, "tel": "", "tags": ["winter", "new"], "ota": [{"site": "Klook", "label": "奈良監獄博物館門票（星野集團）", "url": "https://www.klook.com/zh-TW/activity/204871-nara-prison-museum-by-hoshino-resorts/"}]}];
+const S = [{"id": "naraprison", "name": "奈良監獄博物館（奈良監獄ミュージアム・ならかんごくミュージアム）", "group": "kyoto", "sub": true, "areaLabel": "奈良", "intro": "2026 年 4 月 27 日開館。舊奈良監獄 1908 年完工，是明治政府「五大監獄」中唯一完整保存下來的一座，紅磚建築群是國家重要文化財，紅磚是當年受刑人在刑務作業中和工匠一起燒製的。星野集團把它活化成博物館和飯店「星のや奈良監獄」：保存區可以走進保留原貌的舍房長廊與中央看守所，三棟展示棟分別以「歷史與建築」「身體與心」「監獄與社會」為主題，最後一棟展出當代藝術家受監獄啟發的作品。冬天另有夜間活動「PRISON BY NIGHT」（2026/12/4–2027/1/31），紅磚建築打燈，牆上投影參觀者留下的「光之文字」。", "highlights": ["表門：兩座圓頂小塔夾著拱門的紅磚正門，最經典的拍照點", "保存區：明亮天窗下的舍房長廊與牢房、中央看守所", "展示棟：監獄建築與歷史、受刑人的一天，以及當代藝術「監獄與社會」", "冬季限定 PRISON BY NIGHT（2026/12/4–2027/1/31，1/12–14 除外）：18:00–21:00 夜間燈光與投影，要預約", "館內咖啡廳與商店：紅磚造型咖哩麵包、地方汽水"], "hours": "9:00–17:00（最後入館 16:00）；無固定休館日（維修休館時官網公告）；冬季夜間活動 18:00–21:00（最後入場 20:00）", "fee": "日本國外居住者 3,500 円、日本居住者 2,500 円、大學・高中生 1,500 円、小・國中生 700 円、學齡前免費；夜間活動：大人 3,000 円、大學・高中 2,000 円、小・國中 1,000 円", "season": "", "tickets": [{"item": "入館門票（日期・時段指定）", "price": "國外居住大人 3,500 円／大學・高中 1,500 円／小・國中 700 円／學齡前免費", "url": "https://hoshinoresorts.com/nara-prison-museum/ja/visit/", "need_booking": true, "note": "人數、時段限定的事前預約制；購買後不能改日期或人數，要先取消再重訂。入館時可能確認居住地。"}, {"item": "PRISON BY NIGHT : Light & Echoes（冬季夜間活動）", "price": "大人 3,000 円／大學・高中 2,000 円／小・國中 1,000 円／學齡前免費", "url": "https://hoshinoresorts.com/nara-prison-museum/ja/activities-events/prison-by-night/", "need_booking": true, "note": "2026/12/4–2027/1/31（1/12–14 除外），18:00–21:00（20:00 最後入場）；只有住京都的 1/29–1/31 趕得上。"}], "tips": ["2027/1/29–2/6 每天開館（9:00–17:00，16:00 停止入館）；夜間活動只到 1/31（日）。", "從伏見稻荷住處：JR 奈良線稻荷站搭「みやこ路快速」直達 JR 奈良站約 42 分、680 円，西口 11 號站牌搭往「奈良監獄ミュージアム前」的直達巴士約 25 分（大人 250 円）。", "從西九條住處：JR 大和路快速直達 JR 奈良站約 45 分、750 円，再轉直達巴士；近鐵奈良站 2 號站牌也有直達巴士（約 18 分）。", "館內空間有限，行李箱、嬰兒車不能帶進館；明治建築有部分高低差，有繞行路線，可向櫃台詢問。", "主題是監獄與自由、人權，內容偏嚴肅，國小高年級以上和長輩比較有感；可以和東大寺、奈良公園排同一天（博物館在奈良公園北邊）。"], "trip": [{"label": "從京都（京都站・JR 奈良線）", "total_min": 73, "total_price": "約 970 円"}, {"label": "從大阪（難波）搭近鐵", "total_min": 66, "total_price": "約 930 円"}], "access": "", "addr": "奈良監獄博物館", "official": "https://hoshinoresorts.com/nara-prison-museum/ja/", "images": [{"file": "sights-img/naraprison/01.jpg", "caption": "紅磚表門（兩座圓頂小塔）", "credit": "星野リゾート 奈良監獄ミュージアム公式サイト, https://hoshinoresorts.com/nara-prison-museum/ja/"}, {"file": "sights-img/naraprison/02.jpg", "caption": "保存區的舍房長廊", "credit": "星野リゾート 奈良監獄ミュージアム公式サイト, https://hoshinoresorts.com/nara-prison-museum/ja/"}, {"file": "sights-img/naraprison/03.jpg", "caption": "紅磚舍房與博物館入口", "credit": "星野リゾート 奈良監獄ミュージアム公式サイト, https://hoshinoresorts.com/nara-prison-museum/ja/"}, {"file": "sights-img/naraprison/04.jpg", "caption": "展示棟：明治五大監獄的建築模型", "credit": "星野リゾート 奈良監獄ミュージアム公式サイト, https://hoshinoresorts.com/nara-prison-museum/ja/"}, {"file": "sights-img/naraprison/05.jpg", "caption": "展示棟內部", "credit": "星野リゾート 奈良監獄ミュージアム公式サイト, https://hoshinoresorts.com/nara-prison-museum/ja/"}, {"file": "sights-img/naraprison/06.jpg", "caption": "冬季夜間活動 PRISON BY NIGHT：長廊的光影演出", "credit": "星野リゾート 奈良監獄ミュージアム公式サイト, https://hoshinoresorts.com/nara-prison-museum/ja/"}, {"file": "sights-img/naraprison/07.jpg", "caption": "冬季夜間活動：牢房門上的投影", "credit": "星野リゾート 奈良監獄ミュージアム公式サイト, https://hoshinoresorts.com/nara-prison-museum/ja/"}, {"file": "sights-img/naraprison/08.jpg", "caption": "冬季夜間活動：夜色中的紅磚舍房", "credit": "星野リゾート 奈良監獄ミュージアム公式サイト, https://hoshinoresorts.com/nara-prison-museum/ja/"}, {"file": "sights-img/naraprison/09.jpg", "caption": "紅磚外牆與枯黃草地（3 月中旬攝）", "credit": "663highland, CC BY 2.5, https://commons.wikimedia.org/wiki/File:130316_Nara_Juvenile_Prison_Nara_Japan03s3.jpg"}, {"file": "sights-img/naraprison/10.jpg", "caption": "紅磚的舊廳舍（3 月中旬攝）", "credit": "663highland, CC BY 2.5, https://commons.wikimedia.org/wiki/File:130316_Nara_Juvenile_Prison_Nara_Japan05s3.jpg"}], "book": true, "tel": "", "tags": ["winter", "new"], "ota": [{"site": "Klook", "label": "奈良監獄博物館門票（星野集團）", "url": "https://www.klook.com/zh-TW/activity/204871-nara-prison-museum-by-hoshino-resorts/"}], "collage": "sights-img/naraprison/c_7a141e16.jpg"}];
 const GROUPS = [['osaka','大阪'],['kyoto','京都']];
 const SOLO = document.documentElement.dataset.solo || '';   // 分享頁（s/景點.html）：只放這一張卡
 const st = {g:'all', q:''};
@@ -345,6 +362,7 @@ const telLink = n => n ? `<a class="tel" href="tel:+81${String(n).replace(/[^0-9
 const maps = s => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.addr || s.name);
 
 function carousel(s){
+  if (s.collage) return `<div class="car colg"><button type="button" class="lbopen" data-lb="${esc(s.id)}" aria-label="看 ${esc(s.name)} 的全部照片（${s.images.length} 張）"><img src="${esc(s.collage)}" alt="${esc(s.name)} 照片拼貼" loading="lazy" decoding="async"><span class="cnt">共 ${s.images.length} 張・點圖看大圖</span></button></div>`;
   if (!s.images.length) return `<div class="car"><div class="noimg">${esc(s.name)}</div></div>`;
   const n = s.images.length;
   return `<div class="car" data-id="${esc(s.id)}" data-i="0" tabindex="0" aria-roledescription="carousel" aria-label="${esc(s.name)} 照片">
@@ -432,6 +450,42 @@ document.addEventListener('click', e => {
   if (b.dataset.step) go(car, +car.dataset.i + +b.dataset.step);
   else if (b.dataset.go) go(car, +b.dataset.go);
 });
+/* ---------- 看大圖（拼貼卡片點下去） ---------- */
+const LB = {s:null, i:0};
+function lbEl(){
+  let el = $('#lb'); if (el) return el;
+  el = document.createElement('div'); el.id = 'lb'; el.className = 'lb'; el.hidden = true;
+  el.setAttribute('role','dialog'); el.setAttribute('aria-modal','true');
+  el.innerHTML = `<div class="lbtop"><span class="lbname"></span><span class="lbcount"></span><button type="button" class="lbx" aria-label="關閉">✕</button></div>
+    <div class="lbstage"><img class="lbimg" alt=""><button type="button" class="lbnav p" aria-label="上一張">‹</button><button type="button" class="lbnav n" aria-label="下一張">›</button></div>
+    <p class="lbcap"></p>`;
+  document.body.appendChild(el);
+  el.querySelector('.lbx').addEventListener('click', lbClose);
+  el.querySelector('.lbnav.p').addEventListener('click', () => lbGo(LB.i - 1));
+  el.querySelector('.lbnav.n').addEventListener('click', () => lbGo(LB.i + 1));
+  el.addEventListener('click', e => { if (e.target === el || e.target.classList.contains('lbstage')) lbClose(); });
+  let x0 = null;
+  el.addEventListener('pointerdown', e => { x0 = e.clientX; });
+  el.addEventListener('pointerup', e => { if (x0 === null) return; const dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 40) lbGo(LB.i + (dx < 0 ? 1 : -1)); });
+  return el;
+}
+function lbGo(i){
+  const s = LB.s, n = s.images.length; LB.i = (i + n) % n;
+  const el = lbEl(), im = s.images[LB.i];
+  el.querySelector('.lbimg').src = im.file; el.querySelector('.lbimg').alt = im.caption || s.name;
+  el.querySelector('.lbcount').textContent = `${LB.i + 1} / ${n}`;
+  el.querySelector('.lbcap').innerHTML = `${esc(im.caption || '')}<small>${esc(im.credit || '')}</small>`;
+  [LB.i + 1, LB.i - 1].forEach(j => { const p = s.images[(j + n) % n]; if (p) (new Image()).src = p.file; });   // 先載入前後一張
+}
+function lbOpen(id){
+  const s = S.find(x => x.id === id); if (!s || !s.images.length) return;
+  LB.s = s; const el = lbEl(); el.querySelector('.lbname').textContent = s.name;
+  el.querySelectorAll('.lbnav').forEach(b => b.hidden = s.images.length < 2);
+  lbGo(0); el.hidden = false; document.documentElement.classList.add('lbon'); el.querySelector('.lbx').focus();
+}
+function lbClose(){ const el = $('#lb'); if (el) el.hidden = true; document.documentElement.classList.remove('lbon'); }
+document.addEventListener('click', e => { const b = e.target.closest('[data-lb]'); if (b){ e.preventDefault(); lbOpen(b.dataset.lb); } });
+document.addEventListener('keydown', e => { const el = $('#lb'); if (!el || el.hidden) return; if (e.key === 'Escape') lbClose(); if (e.key === 'ArrowLeft') lbGo(LB.i - 1); if (e.key === 'ArrowRight') lbGo(LB.i + 1); });
 document.addEventListener('keydown', e => { const car = e.target.closest?.('.car'); if (!car) return; if (e.key==='ArrowLeft') go(car, +car.dataset.i-1); if (e.key==='ArrowRight') go(car, +car.dataset.i+1); });
 let sx = null, scar = null;
 document.addEventListener('pointerdown', e => { scar = e.target.closest('.car'); if (scar){ sx = e.clientX; scar.dataset.hold = '1'; } });
@@ -457,7 +511,11 @@ if (SOLO){
   if (h) h.innerHTML = `<p class="eyebrow">Sights</p><p class="back"><a href="sights.html#${esc(s.id)}">← 看全部景點</a></p>`;
 }
 render();
-const jump = () => { const h = location.hash.slice(1); const el = h && document.getElementById(h); if (el) el.scrollIntoView({block:'start'}); };
+// 畫面外的卡片用估計高度（content-visibility），跳到某張卡前先把全部卡片畫一次，位置才準（之後瀏覽器會記住實際高度）
+const raf2 = () => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+const jump = async () => { const h = decodeURIComponent(location.hash.slice(1)); const el = h && document.getElementById(h); if (!el) return;
+  const R = document.documentElement; R.classList.add('cvoff'); el.scrollIntoView({block:'start'}); await raf2();
+  R.classList.remove('cvoff'); await raf2(); el.scrollIntoView({block:'start'}); };
 jump(); window.addEventListener('load', jump);
 
 /* ---------- 行程籃（與「行程規劃」頁共用） ---------- */

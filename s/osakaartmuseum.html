@@ -62,7 +62,7 @@ main{padding-block:16px 48px}
 .area{margin-top:12px}
 .area>h3{font:600 16px var(--display);color:var(--muted);margin:0 0 10px;padding-bottom:6px;border-bottom:1px dashed var(--line)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:18px}
-.card{scroll-margin-top:120px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0;content-visibility:auto;contain-intrinsic-size:auto 900px}  /* 畫面外的卡片先不畫：景點多時捲動才不會卡 */
+.card{scroll-margin-top:120px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0;content-visibility:auto;contain-intrinsic-size:auto 1050px}  /* 畫面外的卡片先不畫：景點多時捲動才不會卡 */
 
 .car{position:relative;aspect-ratio:16/10;background:var(--ai-soft);overflow:hidden;max-width:100%;touch-action:pan-y}
 .track{display:flex;height:100%;transition:transform .55s ease}
@@ -223,6 +223,23 @@ select,input{border-radius:10px!important}
 .basketfab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;background:var(--kin);color:#fff!important;text-decoration:none;font:700 15px var(--body);padding:12px 18px;border-radius:999px;box-shadow:0 8px 24px rgba(217,105,46,.35)}
 .basketfab b{font-family:var(--mono);background:#fff;color:var(--kin);border-radius:999px;padding:0 8px;margin:0 2px}
 .basketfab[hidden]{display:none!important}
+.cvoff .card{content-visibility:visible!important}
+.colg .lbopen{display:block;width:100%;height:100%;padding:0;border:0;background:none;cursor:zoom-in;position:relative}
+.colg img{width:100%;height:100%;object-fit:cover;display:block}
+.colg .cnt{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.6);color:#fff;font:600 12px var(--body);padding:3px 10px;border-radius:999px}
+.lb{position:fixed;inset:0;z-index:1000;background:#0B0D14;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 8px) 12px calc(env(safe-area-inset-bottom,0px) + 12px);color:#fff}
+.lb[hidden]{display:none!important}
+.lbtop{display:flex;align-items:center;gap:10px;font:600 15px var(--body);min-height:44px}
+.lbname{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lbcount{font:600 13px var(--mono);opacity:.8}
+.lbx{transform:none!important;width:44px;height:44px;border:0;border-radius:999px;background:rgba(255,255,255,.14);color:#fff;font-size:20px;cursor:pointer}
+.lbstage{flex:1;min-height:0;position:relative;display:flex;align-items:center;justify-content:center;touch-action:pan-y}
+.lbimg{max-width:100%;max-height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
+.lbnav{position:absolute;top:calc(50% - 32px);transform:none!important;width:44px;height:64px;border:0;border-radius:10px;background:rgba(255,255,255,.14);color:#fff;font-size:30px;cursor:pointer}
+.lbnav.p{left:0}.lbnav.n{right:0}
+.lbcap{margin:10px 0 0;font-size:14px;line-height:1.5;text-align:center}
+.lbcap small{display:block;font-size:11px;opacity:.65;margin-top:2px;word-break:break-all}
+html.lbon,html.lbon body{overflow:hidden}
 .src{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:4px 0 0;font-size:13px;line-height:1.5}
 .src b{font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.08em}
 .src a{color:var(--ai);text-decoration:none;border-bottom:1px solid var(--ai-soft)}
@@ -236,7 +253,7 @@ select,input{border-radius:10px!important}
 .hero .back{margin:6px 0 0;font-size:15px}
 .hero .back a{color:var(--ai);font-weight:700;text-decoration:none}
 </style>
-<script src="jds.js?v=67efed56"></script>
+<script src="jds.js?v=c090dabd"></script>
 <style id="taste">/* 極簡編輯：骨白底、白卡、1px 淡線、幾乎無陰影、墨黑主按鈕、低飽和藍點綴 */
 :root{--paper:#F7F6F3;--surface:#FFFFFF;--ink:#2F3437;--muted:#787774;--line:#EAEAEA;--ai:#1F6C9F;--ai-soft:#E1F3FE;--kin:#2F3437;--kin-soft:#F1F0EC;--warn:#9F2F2D;
 --shadow:0 2px 8px rgba(0,0,0,.04);--shadow-sm:0 0 0 rgba(0,0,0,0);--ease:cubic-bezier(.16,1,.3,1);--grain:none}
@@ -334,7 +351,7 @@ header.site{background:rgba(255,255,255,.9)!important}
 <main class="wrap" id="list"></main>
 <footer class="wrap"><p>照片取自 Wikimedia Commons，作者與授權標在每張照片下方。照片存在「sights-img」資料夾，搬移這個網頁時請整個資料夾一起帶走。開放時間、票價以官網為準（資料查核日 2026/10/3）。</p></footer>
 <script>
-const S = [{"id": "osakaartmuseum", "name": "大阪市立美術館（おおさかしりつびじゅつかん）", "group": "osaka", "sub": false, "areaLabel": "天王寺・阿倍野", "intro": "1936 年開館、位在天王寺公園裡的大阪市立美術館，經過約 2 年 5 個月的大規模整修，2025 年 3 月 1 日重新開館。昭和初期的厚重外觀（國家登錄有形文化財）原樣保留，地面層新開了面向公園的入口，館內除了展示室以外大部分變成免費開放的「無料ゾーン」，挑高的石造中央大廳也能免費參觀；還新增可眺望名園「慶沢園」的露台和咖啡廳。館藏以中國書畫、佛教美術聞名。企劃展示一般 500 円、國中以下免費，特別展另外收費。從天王寺站步行約 7 分，可以和天王寺動物園、てんしば、阿倍野 HARUKAS 排在同一天。", "highlights": ["整修後的新入口與免費區：地下 1 樓入口大廳、1 樓挑高的中央大廳都能免費參觀", "慶沢園：原住友家的池泉回遊式日本庭園，可從新露台和咖啡廳眺望；美術館＋慶沢園共通券 600 円", "企劃展示：2027/1/9–4/11 特集「越南與海的陶瓷——從青花紋樣看海上貿易」等（以官網展覽表為準）", "館藏以中國書畫、日本佛教雕刻與工藝為主，常態以企劃展示輪流展出"], "hours": "9:30–17:00（最後入館 16:30）；週一休館（遇假日開館、隔天平日休），年底年初 12/28–1/4 休館", "fee": "企劃展示：一般 500 円、高中・大學生 200 円、國中以下免費；慶沢園共通券 一般 600 円、高中・大學生 300 円；特別展另計", "season": "", "tickets": [], "tips": ["2027/2/2（二）–2/6（六）每天開館（週一休館不影響大阪期間）。展覽換檔期間部分展示室可能關閉，出發前看官網展覽表。", "從西九條住處：JR 大和路快速或環狀線到天王寺站約 10 分、200 円，中央口出來往天王寺公園方向步行約 7 分。", "免費入館的 65 歲以上優惠只限大阪市內居民；國中以下免費。", "館內除咖啡廳外禁止飲食，長傘不能帶進館；大件行李可放 100 円退幣式置物櫃，地下 1 樓入口可借輪椅，有電梯。", "冬天天王寺公園風大，可以先逛美術館與慶沢園，再去旁邊的天王寺動物園、てんしば或阿倍野 HARUKAS。"], "trip": null, "access": "天王寺站 15號出口・步行約 7 分", "addr": "大阪府大阪市天王寺区茶臼山町1-82", "official": "https://www.osaka-art-museum.jp/", "images": [{"file": "sights-img/osakaartmuseum/01.jpg", "caption": "2025 年整修後重新開館的美術館正面", "credit": "Adece033090, CC BY 4.0, https://commons.wikimedia.org/wiki/File:20250827_大阪市立美術館.jpg"}, {"file": "sights-img/osakaartmuseum/02.jpg", "caption": "昭和初期建築的正面入口", "credit": "Iswzo, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:大阪市立美术馆正面入口2019.jpg"}, {"file": "sights-img/osakaartmuseum/03.jpg", "caption": "挑高石造的中央大廳（整修前攝，現為免費區）", "credit": "Daderot, CC0, https://commons.wikimedia.org/wiki/File:Osaka_Municipal_Museum_of_Art_-_central_hall_-_DSC05819.JPG"}, {"file": "sights-img/osakaartmuseum/04.jpg", "caption": "慶沢園池面倒映阿倍野 HARUKAS（1 月攝）", "credit": "Laitche, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Azumaya_and_Abeno_Harukas_in_the_reflection_at_keitakuen,_January_2024_-_6585.jpg"}, {"file": "sights-img/osakaartmuseum/05.jpg", "caption": "美術館前冬天盛開的紫羅蘭花壇（1 月攝）", "credit": "kisaragi, CC BY-SA 3.0, https://commons.wikimedia.org/wiki/File:The_flowers_before_Osaka_City_Museum_-_panoramio.jpg"}, {"file": "sights-img/osakaartmuseum/06.jpg", "caption": "天王寺公園入口與美術館（3 月中旬攝）", "credit": "Guilhem Vellut, CC BY 2.0, https://commons.wikimedia.org/wiki/File:Osaka_(13382610383).jpg"}, {"file": "sights-img/osakaartmuseum/07.jpg", "caption": "從高處俯瞰美術館與慶沢園", "credit": "othree, CC BY 2.0, https://commons.wikimedia.org/wiki/File:Osaka_City_Museum_of_Fine_Arts_2014.jpg"}], "book": false, "tel": "06-6771-4874", "tags": ["winter", "new"], "ota": []}];
+const S = [{"id": "osakaartmuseum", "name": "大阪市立美術館（おおさかしりつびじゅつかん）", "group": "osaka", "sub": false, "areaLabel": "天王寺・阿倍野", "intro": "1936 年開館、位在天王寺公園裡的大阪市立美術館，經過約 2 年 5 個月的大規模整修，2025 年 3 月 1 日重新開館。昭和初期的厚重外觀（國家登錄有形文化財）原樣保留，地面層新開了面向公園的入口，館內除了展示室以外大部分變成免費開放的「無料ゾーン」，挑高的石造中央大廳也能免費參觀；還新增可眺望名園「慶沢園」的露台和咖啡廳。館藏以中國書畫、佛教美術聞名。企劃展示一般 500 円、國中以下免費，特別展另外收費。從天王寺站步行約 7 分，可以和天王寺動物園、てんしば、阿倍野 HARUKAS 排在同一天。", "highlights": ["整修後的新入口與免費區：地下 1 樓入口大廳、1 樓挑高的中央大廳都能免費參觀", "慶沢園：原住友家的池泉回遊式日本庭園，可從新露台和咖啡廳眺望；美術館＋慶沢園共通券 600 円", "企劃展示：2027/1/9–4/11 特集「越南與海的陶瓷——從青花紋樣看海上貿易」等（以官網展覽表為準）", "館藏以中國書畫、日本佛教雕刻與工藝為主，常態以企劃展示輪流展出"], "hours": "9:30–17:00（最後入館 16:30）；週一休館（遇假日開館、隔天平日休），年底年初 12/28–1/4 休館", "fee": "企劃展示：一般 500 円、高中・大學生 200 円、國中以下免費；慶沢園共通券 一般 600 円、高中・大學生 300 円；特別展另計", "season": "", "tickets": [], "tips": ["2027/2/2（二）–2/6（六）每天開館（週一休館不影響大阪期間）。展覽換檔期間部分展示室可能關閉，出發前看官網展覽表。", "從西九條住處：JR 大和路快速或環狀線到天王寺站約 10 分、200 円，中央口出來往天王寺公園方向步行約 7 分。", "免費入館的 65 歲以上優惠只限大阪市內居民；國中以下免費。", "館內除咖啡廳外禁止飲食，長傘不能帶進館；大件行李可放 100 円退幣式置物櫃，地下 1 樓入口可借輪椅，有電梯。", "冬天天王寺公園風大，可以先逛美術館與慶沢園，再去旁邊的天王寺動物園、てんしば或阿倍野 HARUKAS。"], "trip": null, "access": "天王寺站 15號出口・步行約 7 分", "addr": "大阪府大阪市天王寺区茶臼山町1-82", "official": "https://www.osaka-art-museum.jp/", "images": [{"file": "sights-img/osakaartmuseum/01.jpg", "caption": "2025 年整修後重新開館的美術館正面", "credit": "Adece033090, CC BY 4.0, https://commons.wikimedia.org/wiki/File:20250827_大阪市立美術館.jpg"}, {"file": "sights-img/osakaartmuseum/02.jpg", "caption": "昭和初期建築的正面入口", "credit": "Iswzo, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:大阪市立美术馆正面入口2019.jpg"}, {"file": "sights-img/osakaartmuseum/03.jpg", "caption": "挑高石造的中央大廳（整修前攝，現為免費區）", "credit": "Daderot, CC0, https://commons.wikimedia.org/wiki/File:Osaka_Municipal_Museum_of_Art_-_central_hall_-_DSC05819.JPG"}, {"file": "sights-img/osakaartmuseum/04.jpg", "caption": "慶沢園池面倒映阿倍野 HARUKAS（1 月攝）", "credit": "Laitche, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Azumaya_and_Abeno_Harukas_in_the_reflection_at_keitakuen,_January_2024_-_6585.jpg"}, {"file": "sights-img/osakaartmuseum/05.jpg", "caption": "美術館前冬天盛開的紫羅蘭花壇（1 月攝）", "credit": "kisaragi, CC BY-SA 3.0, https://commons.wikimedia.org/wiki/File:The_flowers_before_Osaka_City_Museum_-_panoramio.jpg"}, {"file": "sights-img/osakaartmuseum/06.jpg", "caption": "天王寺公園入口與美術館（3 月中旬攝）", "credit": "Guilhem Vellut, CC BY 2.0, https://commons.wikimedia.org/wiki/File:Osaka_(13382610383).jpg"}, {"file": "sights-img/osakaartmuseum/07.jpg", "caption": "從高處俯瞰美術館與慶沢園", "credit": "othree, CC BY 2.0, https://commons.wikimedia.org/wiki/File:Osaka_City_Museum_of_Fine_Arts_2014.jpg"}], "book": false, "tel": "06-6771-4874", "tags": ["winter", "new"], "ota": [], "collage": "sights-img/osakaartmuseum/c_d67a8f01.jpg"}];
 const GROUPS = [['osaka','大阪'],['kyoto','京都']];
 const SOLO = document.documentElement.dataset.solo || '';   // 分享頁（s/景點.html）：只放這一張卡
 const st = {g:'all', q:''};
@@ -345,6 +362,7 @@ const telLink = n => n ? `<a class="tel" href="tel:+81${String(n).replace(/[^0-9
 const maps = s => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.addr || s.name);
 
 function carousel(s){
+  if (s.collage) return `<div class="car colg"><button type="button" class="lbopen" data-lb="${esc(s.id)}" aria-label="看 ${esc(s.name)} 的全部照片（${s.images.length} 張）"><img src="${esc(s.collage)}" alt="${esc(s.name)} 照片拼貼" loading="lazy" decoding="async"><span class="cnt">共 ${s.images.length} 張・點圖看大圖</span></button></div>`;
   if (!s.images.length) return `<div class="car"><div class="noimg">${esc(s.name)}</div></div>`;
   const n = s.images.length;
   return `<div class="car" data-id="${esc(s.id)}" data-i="0" tabindex="0" aria-roledescription="carousel" aria-label="${esc(s.name)} 照片">
@@ -432,6 +450,42 @@ document.addEventListener('click', e => {
   if (b.dataset.step) go(car, +car.dataset.i + +b.dataset.step);
   else if (b.dataset.go) go(car, +b.dataset.go);
 });
+/* ---------- 看大圖（拼貼卡片點下去） ---------- */
+const LB = {s:null, i:0};
+function lbEl(){
+  let el = $('#lb'); if (el) return el;
+  el = document.createElement('div'); el.id = 'lb'; el.className = 'lb'; el.hidden = true;
+  el.setAttribute('role','dialog'); el.setAttribute('aria-modal','true');
+  el.innerHTML = `<div class="lbtop"><span class="lbname"></span><span class="lbcount"></span><button type="button" class="lbx" aria-label="關閉">✕</button></div>
+    <div class="lbstage"><img class="lbimg" alt=""><button type="button" class="lbnav p" aria-label="上一張">‹</button><button type="button" class="lbnav n" aria-label="下一張">›</button></div>
+    <p class="lbcap"></p>`;
+  document.body.appendChild(el);
+  el.querySelector('.lbx').addEventListener('click', lbClose);
+  el.querySelector('.lbnav.p').addEventListener('click', () => lbGo(LB.i - 1));
+  el.querySelector('.lbnav.n').addEventListener('click', () => lbGo(LB.i + 1));
+  el.addEventListener('click', e => { if (e.target === el || e.target.classList.contains('lbstage')) lbClose(); });
+  let x0 = null;
+  el.addEventListener('pointerdown', e => { x0 = e.clientX; });
+  el.addEventListener('pointerup', e => { if (x0 === null) return; const dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 40) lbGo(LB.i + (dx < 0 ? 1 : -1)); });
+  return el;
+}
+function lbGo(i){
+  const s = LB.s, n = s.images.length; LB.i = (i + n) % n;
+  const el = lbEl(), im = s.images[LB.i];
+  el.querySelector('.lbimg').src = im.file; el.querySelector('.lbimg').alt = im.caption || s.name;
+  el.querySelector('.lbcount').textContent = `${LB.i + 1} / ${n}`;
+  el.querySelector('.lbcap').innerHTML = `${esc(im.caption || '')}<small>${esc(im.credit || '')}</small>`;
+  [LB.i + 1, LB.i - 1].forEach(j => { const p = s.images[(j + n) % n]; if (p) (new Image()).src = p.file; });   // 先載入前後一張
+}
+function lbOpen(id){
+  const s = S.find(x => x.id === id); if (!s || !s.images.length) return;
+  LB.s = s; const el = lbEl(); el.querySelector('.lbname').textContent = s.name;
+  el.querySelectorAll('.lbnav').forEach(b => b.hidden = s.images.length < 2);
+  lbGo(0); el.hidden = false; document.documentElement.classList.add('lbon'); el.querySelector('.lbx').focus();
+}
+function lbClose(){ const el = $('#lb'); if (el) el.hidden = true; document.documentElement.classList.remove('lbon'); }
+document.addEventListener('click', e => { const b = e.target.closest('[data-lb]'); if (b){ e.preventDefault(); lbOpen(b.dataset.lb); } });
+document.addEventListener('keydown', e => { const el = $('#lb'); if (!el || el.hidden) return; if (e.key === 'Escape') lbClose(); if (e.key === 'ArrowLeft') lbGo(LB.i - 1); if (e.key === 'ArrowRight') lbGo(LB.i + 1); });
 document.addEventListener('keydown', e => { const car = e.target.closest?.('.car'); if (!car) return; if (e.key==='ArrowLeft') go(car, +car.dataset.i-1); if (e.key==='ArrowRight') go(car, +car.dataset.i+1); });
 let sx = null, scar = null;
 document.addEventListener('pointerdown', e => { scar = e.target.closest('.car'); if (scar){ sx = e.clientX; scar.dataset.hold = '1'; } });
@@ -457,7 +511,11 @@ if (SOLO){
   if (h) h.innerHTML = `<p class="eyebrow">Sights</p><p class="back"><a href="sights.html#${esc(s.id)}">← 看全部景點</a></p>`;
 }
 render();
-const jump = () => { const h = location.hash.slice(1); const el = h && document.getElementById(h); if (el) el.scrollIntoView({block:'start'}); };
+// 畫面外的卡片用估計高度（content-visibility），跳到某張卡前先把全部卡片畫一次，位置才準（之後瀏覽器會記住實際高度）
+const raf2 = () => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+const jump = async () => { const h = decodeURIComponent(location.hash.slice(1)); const el = h && document.getElementById(h); if (!el) return;
+  const R = document.documentElement; R.classList.add('cvoff'); el.scrollIntoView({block:'start'}); await raf2();
+  R.classList.remove('cvoff'); await raf2(); el.scrollIntoView({block:'start'}); };
 jump(); window.addEventListener('load', jump);
 
 /* ---------- 行程籃（與「行程規劃」頁共用） ---------- */

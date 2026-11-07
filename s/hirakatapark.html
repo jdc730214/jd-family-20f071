@@ -62,7 +62,7 @@ main{padding-block:16px 48px}
 .area{margin-top:12px}
 .area>h3{font:600 16px var(--display);color:var(--muted);margin:0 0 10px;padding-bottom:6px;border-bottom:1px dashed var(--line)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:18px}
-.card{scroll-margin-top:120px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0;content-visibility:auto;contain-intrinsic-size:auto 900px}  /* 畫面外的卡片先不畫：景點多時捲動才不會卡 */
+.card{scroll-margin-top:120px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0;content-visibility:auto;contain-intrinsic-size:auto 1050px}  /* 畫面外的卡片先不畫：景點多時捲動才不會卡 */
 
 .car{position:relative;aspect-ratio:16/10;background:var(--ai-soft);overflow:hidden;max-width:100%;touch-action:pan-y}
 .track{display:flex;height:100%;transition:transform .55s ease}
@@ -223,6 +223,23 @@ select,input{border-radius:10px!important}
 .basketfab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;background:var(--kin);color:#fff!important;text-decoration:none;font:700 15px var(--body);padding:12px 18px;border-radius:999px;box-shadow:0 8px 24px rgba(217,105,46,.35)}
 .basketfab b{font-family:var(--mono);background:#fff;color:var(--kin);border-radius:999px;padding:0 8px;margin:0 2px}
 .basketfab[hidden]{display:none!important}
+.cvoff .card{content-visibility:visible!important}
+.colg .lbopen{display:block;width:100%;height:100%;padding:0;border:0;background:none;cursor:zoom-in;position:relative}
+.colg img{width:100%;height:100%;object-fit:cover;display:block}
+.colg .cnt{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.6);color:#fff;font:600 12px var(--body);padding:3px 10px;border-radius:999px}
+.lb{position:fixed;inset:0;z-index:1000;background:#0B0D14;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 8px) 12px calc(env(safe-area-inset-bottom,0px) + 12px);color:#fff}
+.lb[hidden]{display:none!important}
+.lbtop{display:flex;align-items:center;gap:10px;font:600 15px var(--body);min-height:44px}
+.lbname{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lbcount{font:600 13px var(--mono);opacity:.8}
+.lbx{transform:none!important;width:44px;height:44px;border:0;border-radius:999px;background:rgba(255,255,255,.14);color:#fff;font-size:20px;cursor:pointer}
+.lbstage{flex:1;min-height:0;position:relative;display:flex;align-items:center;justify-content:center;touch-action:pan-y}
+.lbimg{max-width:100%;max-height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
+.lbnav{position:absolute;top:calc(50% - 32px);transform:none!important;width:44px;height:64px;border:0;border-radius:10px;background:rgba(255,255,255,.14);color:#fff;font-size:30px;cursor:pointer}
+.lbnav.p{left:0}.lbnav.n{right:0}
+.lbcap{margin:10px 0 0;font-size:14px;line-height:1.5;text-align:center}
+.lbcap small{display:block;font-size:11px;opacity:.65;margin-top:2px;word-break:break-all}
+html.lbon,html.lbon body{overflow:hidden}
 .src{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:4px 0 0;font-size:13px;line-height:1.5}
 .src b{font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.08em}
 .src a{color:var(--ai);text-decoration:none;border-bottom:1px solid var(--ai-soft)}
@@ -236,7 +253,7 @@ select,input{border-radius:10px!important}
 .hero .back{margin:6px 0 0;font-size:15px}
 .hero .back a{color:var(--ai);font-weight:700;text-decoration:none}
 </style>
-<script src="jds.js?v=67efed56"></script>
+<script src="jds.js?v=c090dabd"></script>
 <style id="taste">/* 極簡編輯：骨白底、白卡、1px 淡線、幾乎無陰影、墨黑主按鈕、低飽和藍點綴 */
 :root{--paper:#F7F6F3;--surface:#FFFFFF;--ink:#2F3437;--muted:#787774;--line:#EAEAEA;--ai:#1F6C9F;--ai-soft:#E1F3FE;--kin:#2F3437;--kin-soft:#F1F0EC;--warn:#9F2F2D;
 --shadow:0 2px 8px rgba(0,0,0,.04);--shadow-sm:0 0 0 rgba(0,0,0,0);--ease:cubic-bezier(.16,1,.3,1);--grain:none}
@@ -334,7 +351,7 @@ header.site{background:rgba(255,255,255,.9)!important}
 <main class="wrap" id="list"></main>
 <footer class="wrap"><p>照片取自 Wikimedia Commons，作者與授權標在每張照片下方。照片存在「sights-img」資料夾，搬移這個網頁時請整個資料夾一起帶走。開放時間、票價以官網為準（資料查核日 2026/10/3）。</p></footer>
 <script>
-const S = [{"id": "hirakatapark", "name": "枚方遊樂園（ひらかたパーク・ひらパー）", "group": "osaka", "sub": true, "areaLabel": "枚方", "intro": "京阪電車經營的老牌遊樂園，暱稱「ひらパー」，已有百年以上歷史，是日本現存最古老的遊樂園之一。園內有木造雲霄飛車、高約 80 m 的摩天輪，也有幼兒能搭的小火車、旋轉直升機等二十多種設施，大人小孩各有得玩。冬天週末和假日傍晚起有「光之遊園地」燈飾，可以一路玩到晚上。", "highlights": ["木造雲霄飛車「エルフ」、紅色雲霄飛車「レッドファルコン」", "摩天輪「スカイウォーカー」：頂端約 80 m，晚上可以看大阪方向的夜景", "幼兒設施：くるくるヘリコプター、ころっとろっこ小火車、まじかるジャンピン等（0 歲起可搭的有 14 種，要付費大人陪同）", "冬季「光之遊園地」燈飾：週六日、假日傍晚點燈，憑入園券就能看"], "hours": "2027 年 1–2 月：平日 10:00–17:00、週六日與國定假日 10:00–20:00；每週四休園（國定假日照開），另 1/1、1/12–1/15、1/18–1/22 休園", "fee": "入園：大人（國中以上）2,000 円、小學生 1,200 円、2 歲～學齡前 1,200 円（網購各便宜 100 円）；遊樂設施一日券（フリーパス）另加 大人・小學生 3,400 円、幼兒 2,100 円；入園＋一日券套票現場 5,400／4,600／3,300 円；未滿 2 歲免費", "season": "", "tickets": [{"item": "入園券＋フリーパス（アソビュー！／KKday 網購）", "price": "大人 5,300 円／小學生 4,500 円／幼兒 3,200 円", "url": "https://www.hirakatapark.co.jp/information/calendar/", "need_booking": false, "note": "網購比現場便宜 100 円、入園較快。不玩設施的長輩只買入園券（2,000 円）就好，小朋友再買一日券或單次搭乘券（のりもの券）。", "tel": "0570-016-855"}], "tips": ["冬季（1–2 月）每週四休園，國定假日照開（例如 2/11 週四照常營業）；1 月另有 1/1、1/12–1/15、1/18–1/22 長休。官網營業行事曆按月公布，出發前再確認。", "平日只開到 17:00；週六日、假日開到 20:00，傍晚起有「光之遊園地」燈飾，16:00 以後入園有較便宜的夜間票（入園＋一日券 網購 3,900／3,300／2,500 円）。", "戶外設施下雨或強風時會停駛；冬天傍晚在摩天輪、雲霄飛車上很冷，要穿暖。", "帶小孩、長輩：正面服務台有授乳室、泡奶熱水和尿布台；B 型嬰兒車租借 500 円（押金 1,500 円），輪椅免費（押金 1,500 円），都不能預約。", "冬季戶外溜冰場「ウインターカーニバル」往年約 12 月中旬到 3 月上旬開放，入場和租鞋另外收費（2026–27 年的日期、票價待確認）。", "京阪、Osaka Metro 等都有「ひらパーGo!Go!チケット」（來回車票＋入園券套票），可以比較是否划算。"], "trip": [{"label": "從京都（三條京阪・京阪電車）", "total_min": 40, "total_price": "約 440 円"}, {"label": "從大阪（淀屋橋・京阪電車）", "total_min": 32, "total_price": "約 400 円"}], "access": "", "addr": "枚方遊樂園", "official": "https://www.hirakatapark.co.jp/", "images": [{"file": "sights-img/hirakatapark/w01.jpg", "caption": "冬季燈飾「光の遊園地」藍色光之城（每年 11 月–隔年 4 月特定日舉辦）", "credit": "ひらかたパーク 官方網站, 官網照片, https://www.hirakatapark.co.jp/wp-content/uploads/2026/10/ill26_9609.jpg"}, {"file": "sights-img/hirakatapark/w02.jpg", "caption": "「光の遊園地」夜間燈飾（冬季特定日舉辦）", "credit": "ひらかたパーク 官方網站, 官網照片, https://www.hirakatapark.co.jp/wp-content/uploads/2026/10/ill26_9886.jpg"}, {"file": "sights-img/hirakatapark/w03.jpg", "caption": "燈籠廣場的冬季燈飾", "credit": "ひらかたパーク 官方網站, 官網照片, https://www.hirakatapark.co.jp/wp-content/uploads/2026/10/ill26_9374.jpg"}, {"file": "sights-img/hirakatapark/w04.jpg", "caption": "雲霄飛車旁的燈飾花園（冬季燈飾期間）", "credit": "ひらかたパーク 官方網站, 官網照片, https://www.hirakatapark.co.jp/wp-content/uploads/2026/10/ill26_8812.jpg"}], "book": false, "tel": "0570-016-855", "tags": ["winter"], "ota": [{"site": "Klook", "label": "京阪觀光通票＋枚方公園門票", "url": "https://www.klook.com/zh-TW/activity/20538-kyoto-sightseeing-hirakata-kurama-kibune-osaka/"}]}];
+const S = [{"id": "hirakatapark", "name": "枚方遊樂園（ひらかたパーク・ひらパー）", "group": "osaka", "sub": true, "areaLabel": "枚方", "intro": "京阪電車經營的老牌遊樂園，暱稱「ひらパー」，已有百年以上歷史，是日本現存最古老的遊樂園之一。園內有木造雲霄飛車、高約 80 m 的摩天輪，也有幼兒能搭的小火車、旋轉直升機等二十多種設施，大人小孩各有得玩。冬天週末和假日傍晚起有「光之遊園地」燈飾，可以一路玩到晚上。", "highlights": ["木造雲霄飛車「エルフ」、紅色雲霄飛車「レッドファルコン」", "摩天輪「スカイウォーカー」：頂端約 80 m，晚上可以看大阪方向的夜景", "幼兒設施：くるくるヘリコプター、ころっとろっこ小火車、まじかるジャンピン等（0 歲起可搭的有 14 種，要付費大人陪同）", "冬季「光之遊園地」燈飾：週六日、假日傍晚點燈，憑入園券就能看"], "hours": "2027 年 1–2 月：平日 10:00–17:00、週六日與國定假日 10:00–20:00；每週四休園（國定假日照開），另 1/1、1/12–1/15、1/18–1/22 休園", "fee": "入園：大人（國中以上）2,000 円、小學生 1,200 円、2 歲～學齡前 1,200 円（網購各便宜 100 円）；遊樂設施一日券（フリーパス）另加 大人・小學生 3,400 円、幼兒 2,100 円；入園＋一日券套票現場 5,400／4,600／3,300 円；未滿 2 歲免費", "season": "", "tickets": [{"item": "入園券＋フリーパス（アソビュー！／KKday 網購）", "price": "大人 5,300 円／小學生 4,500 円／幼兒 3,200 円", "url": "https://www.hirakatapark.co.jp/information/calendar/", "need_booking": false, "note": "網購比現場便宜 100 円、入園較快。不玩設施的長輩只買入園券（2,000 円）就好，小朋友再買一日券或單次搭乘券（のりもの券）。", "tel": "0570-016-855"}], "tips": ["冬季（1–2 月）每週四休園，國定假日照開（例如 2/11 週四照常營業）；1 月另有 1/1、1/12–1/15、1/18–1/22 長休。官網營業行事曆按月公布，出發前再確認。", "平日只開到 17:00；週六日、假日開到 20:00，傍晚起有「光之遊園地」燈飾，16:00 以後入園有較便宜的夜間票（入園＋一日券 網購 3,900／3,300／2,500 円）。", "戶外設施下雨或強風時會停駛；冬天傍晚在摩天輪、雲霄飛車上很冷，要穿暖。", "帶小孩、長輩：正面服務台有授乳室、泡奶熱水和尿布台；B 型嬰兒車租借 500 円（押金 1,500 円），輪椅免費（押金 1,500 円），都不能預約。", "冬季戶外溜冰場「ウインターカーニバル」往年約 12 月中旬到 3 月上旬開放，入場和租鞋另外收費（2026–27 年的日期、票價待確認）。", "京阪、Osaka Metro 等都有「ひらパーGo!Go!チケット」（來回車票＋入園券套票），可以比較是否划算。"], "trip": [{"label": "從京都（三條京阪・京阪電車）", "total_min": 40, "total_price": "約 440 円"}, {"label": "從大阪（淀屋橋・京阪電車）", "total_min": 32, "total_price": "約 400 円"}], "access": "", "addr": "枚方遊樂園", "official": "https://www.hirakatapark.co.jp/", "images": [{"file": "sights-img/hirakatapark/w01.jpg", "caption": "冬季燈飾「光の遊園地」藍色光之城（每年 11 月–隔年 4 月特定日舉辦）", "credit": "ひらかたパーク 官方網站, 官網照片, https://www.hirakatapark.co.jp/wp-content/uploads/2026/10/ill26_9609.jpg"}, {"file": "sights-img/hirakatapark/w02.jpg", "caption": "「光の遊園地」夜間燈飾（冬季特定日舉辦）", "credit": "ひらかたパーク 官方網站, 官網照片, https://www.hirakatapark.co.jp/wp-content/uploads/2026/10/ill26_9886.jpg"}, {"file": "sights-img/hirakatapark/w03.jpg", "caption": "燈籠廣場的冬季燈飾", "credit": "ひらかたパーク 官方網站, 官網照片, https://www.hirakatapark.co.jp/wp-content/uploads/2026/10/ill26_9374.jpg"}, {"file": "sights-img/hirakatapark/w04.jpg", "caption": "雲霄飛車旁的燈飾花園（冬季燈飾期間）", "credit": "ひらかたパーク 官方網站, 官網照片, https://www.hirakatapark.co.jp/wp-content/uploads/2026/10/ill26_8812.jpg"}], "book": false, "tel": "0570-016-855", "tags": ["winter"], "ota": [{"site": "Klook", "label": "京阪觀光通票＋枚方公園門票", "url": "https://www.klook.com/zh-TW/activity/20538-kyoto-sightseeing-hirakata-kurama-kibune-osaka/"}], "collage": "sights-img/hirakatapark/c_40519328.jpg"}];
 const GROUPS = [['osaka','大阪'],['kyoto','京都']];
 const SOLO = document.documentElement.dataset.solo || '';   // 分享頁（s/景點.html）：只放這一張卡
 const st = {g:'all', q:''};
@@ -345,6 +362,7 @@ const telLink = n => n ? `<a class="tel" href="tel:+81${String(n).replace(/[^0-9
 const maps = s => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.addr || s.name);
 
 function carousel(s){
+  if (s.collage) return `<div class="car colg"><button type="button" class="lbopen" data-lb="${esc(s.id)}" aria-label="看 ${esc(s.name)} 的全部照片（${s.images.length} 張）"><img src="${esc(s.collage)}" alt="${esc(s.name)} 照片拼貼" loading="lazy" decoding="async"><span class="cnt">共 ${s.images.length} 張・點圖看大圖</span></button></div>`;
   if (!s.images.length) return `<div class="car"><div class="noimg">${esc(s.name)}</div></div>`;
   const n = s.images.length;
   return `<div class="car" data-id="${esc(s.id)}" data-i="0" tabindex="0" aria-roledescription="carousel" aria-label="${esc(s.name)} 照片">
@@ -432,6 +450,42 @@ document.addEventListener('click', e => {
   if (b.dataset.step) go(car, +car.dataset.i + +b.dataset.step);
   else if (b.dataset.go) go(car, +b.dataset.go);
 });
+/* ---------- 看大圖（拼貼卡片點下去） ---------- */
+const LB = {s:null, i:0};
+function lbEl(){
+  let el = $('#lb'); if (el) return el;
+  el = document.createElement('div'); el.id = 'lb'; el.className = 'lb'; el.hidden = true;
+  el.setAttribute('role','dialog'); el.setAttribute('aria-modal','true');
+  el.innerHTML = `<div class="lbtop"><span class="lbname"></span><span class="lbcount"></span><button type="button" class="lbx" aria-label="關閉">✕</button></div>
+    <div class="lbstage"><img class="lbimg" alt=""><button type="button" class="lbnav p" aria-label="上一張">‹</button><button type="button" class="lbnav n" aria-label="下一張">›</button></div>
+    <p class="lbcap"></p>`;
+  document.body.appendChild(el);
+  el.querySelector('.lbx').addEventListener('click', lbClose);
+  el.querySelector('.lbnav.p').addEventListener('click', () => lbGo(LB.i - 1));
+  el.querySelector('.lbnav.n').addEventListener('click', () => lbGo(LB.i + 1));
+  el.addEventListener('click', e => { if (e.target === el || e.target.classList.contains('lbstage')) lbClose(); });
+  let x0 = null;
+  el.addEventListener('pointerdown', e => { x0 = e.clientX; });
+  el.addEventListener('pointerup', e => { if (x0 === null) return; const dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 40) lbGo(LB.i + (dx < 0 ? 1 : -1)); });
+  return el;
+}
+function lbGo(i){
+  const s = LB.s, n = s.images.length; LB.i = (i + n) % n;
+  const el = lbEl(), im = s.images[LB.i];
+  el.querySelector('.lbimg').src = im.file; el.querySelector('.lbimg').alt = im.caption || s.name;
+  el.querySelector('.lbcount').textContent = `${LB.i + 1} / ${n}`;
+  el.querySelector('.lbcap').innerHTML = `${esc(im.caption || '')}<small>${esc(im.credit || '')}</small>`;
+  [LB.i + 1, LB.i - 1].forEach(j => { const p = s.images[(j + n) % n]; if (p) (new Image()).src = p.file; });   // 先載入前後一張
+}
+function lbOpen(id){
+  const s = S.find(x => x.id === id); if (!s || !s.images.length) return;
+  LB.s = s; const el = lbEl(); el.querySelector('.lbname').textContent = s.name;
+  el.querySelectorAll('.lbnav').forEach(b => b.hidden = s.images.length < 2);
+  lbGo(0); el.hidden = false; document.documentElement.classList.add('lbon'); el.querySelector('.lbx').focus();
+}
+function lbClose(){ const el = $('#lb'); if (el) el.hidden = true; document.documentElement.classList.remove('lbon'); }
+document.addEventListener('click', e => { const b = e.target.closest('[data-lb]'); if (b){ e.preventDefault(); lbOpen(b.dataset.lb); } });
+document.addEventListener('keydown', e => { const el = $('#lb'); if (!el || el.hidden) return; if (e.key === 'Escape') lbClose(); if (e.key === 'ArrowLeft') lbGo(LB.i - 1); if (e.key === 'ArrowRight') lbGo(LB.i + 1); });
 document.addEventListener('keydown', e => { const car = e.target.closest?.('.car'); if (!car) return; if (e.key==='ArrowLeft') go(car, +car.dataset.i-1); if (e.key==='ArrowRight') go(car, +car.dataset.i+1); });
 let sx = null, scar = null;
 document.addEventListener('pointerdown', e => { scar = e.target.closest('.car'); if (scar){ sx = e.clientX; scar.dataset.hold = '1'; } });
@@ -457,7 +511,11 @@ if (SOLO){
   if (h) h.innerHTML = `<p class="eyebrow">Sights</p><p class="back"><a href="sights.html#${esc(s.id)}">← 看全部景點</a></p>`;
 }
 render();
-const jump = () => { const h = location.hash.slice(1); const el = h && document.getElementById(h); if (el) el.scrollIntoView({block:'start'}); };
+// 畫面外的卡片用估計高度（content-visibility），跳到某張卡前先把全部卡片畫一次，位置才準（之後瀏覽器會記住實際高度）
+const raf2 = () => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+const jump = async () => { const h = decodeURIComponent(location.hash.slice(1)); const el = h && document.getElementById(h); if (!el) return;
+  const R = document.documentElement; R.classList.add('cvoff'); el.scrollIntoView({block:'start'}); await raf2();
+  R.classList.remove('cvoff'); await raf2(); el.scrollIntoView({block:'start'}); };
 jump(); window.addEventListener('load', jump);
 
 /* ---------- 行程籃（與「行程規劃」頁共用） ---------- */

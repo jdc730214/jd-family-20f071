@@ -62,7 +62,7 @@ main{padding-block:16px 48px}
 .area{margin-top:12px}
 .area>h3{font:600 16px var(--display);color:var(--muted);margin:0 0 10px;padding-bottom:6px;border-bottom:1px dashed var(--line)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:18px}
-.card{scroll-margin-top:120px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0;content-visibility:auto;contain-intrinsic-size:auto 900px}  /* 畫面外的卡片先不畫：景點多時捲動才不會卡 */
+.card{scroll-margin-top:120px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0;content-visibility:auto;contain-intrinsic-size:auto 1050px}  /* 畫面外的卡片先不畫：景點多時捲動才不會卡 */
 
 .car{position:relative;aspect-ratio:16/10;background:var(--ai-soft);overflow:hidden;max-width:100%;touch-action:pan-y}
 .track{display:flex;height:100%;transition:transform .55s ease}
@@ -223,6 +223,23 @@ select,input{border-radius:10px!important}
 .basketfab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;background:var(--kin);color:#fff!important;text-decoration:none;font:700 15px var(--body);padding:12px 18px;border-radius:999px;box-shadow:0 8px 24px rgba(217,105,46,.35)}
 .basketfab b{font-family:var(--mono);background:#fff;color:var(--kin);border-radius:999px;padding:0 8px;margin:0 2px}
 .basketfab[hidden]{display:none!important}
+.cvoff .card{content-visibility:visible!important}
+.colg .lbopen{display:block;width:100%;height:100%;padding:0;border:0;background:none;cursor:zoom-in;position:relative}
+.colg img{width:100%;height:100%;object-fit:cover;display:block}
+.colg .cnt{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.6);color:#fff;font:600 12px var(--body);padding:3px 10px;border-radius:999px}
+.lb{position:fixed;inset:0;z-index:1000;background:#0B0D14;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 8px) 12px calc(env(safe-area-inset-bottom,0px) + 12px);color:#fff}
+.lb[hidden]{display:none!important}
+.lbtop{display:flex;align-items:center;gap:10px;font:600 15px var(--body);min-height:44px}
+.lbname{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lbcount{font:600 13px var(--mono);opacity:.8}
+.lbx{transform:none!important;width:44px;height:44px;border:0;border-radius:999px;background:rgba(255,255,255,.14);color:#fff;font-size:20px;cursor:pointer}
+.lbstage{flex:1;min-height:0;position:relative;display:flex;align-items:center;justify-content:center;touch-action:pan-y}
+.lbimg{max-width:100%;max-height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
+.lbnav{position:absolute;top:calc(50% - 32px);transform:none!important;width:44px;height:64px;border:0;border-radius:10px;background:rgba(255,255,255,.14);color:#fff;font-size:30px;cursor:pointer}
+.lbnav.p{left:0}.lbnav.n{right:0}
+.lbcap{margin:10px 0 0;font-size:14px;line-height:1.5;text-align:center}
+.lbcap small{display:block;font-size:11px;opacity:.65;margin-top:2px;word-break:break-all}
+html.lbon,html.lbon body{overflow:hidden}
 .src{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:4px 0 0;font-size:13px;line-height:1.5}
 .src b{font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.08em}
 .src a{color:var(--ai);text-decoration:none;border-bottom:1px solid var(--ai-soft)}
@@ -236,7 +253,7 @@ select,input{border-radius:10px!important}
 .hero .back{margin:6px 0 0;font-size:15px}
 .hero .back a{color:var(--ai);font-weight:700;text-decoration:none}
 </style>
-<script src="jds.js?v=67efed56"></script>
+<script src="jds.js?v=c090dabd"></script>
 <style id="taste">/* 極簡編輯：骨白底、白卡、1px 淡線、幾乎無陰影、墨黑主按鈕、低飽和藍點綴 */
 :root{--paper:#F7F6F3;--surface:#FFFFFF;--ink:#2F3437;--muted:#787774;--line:#EAEAEA;--ai:#1F6C9F;--ai-soft:#E1F3FE;--kin:#2F3437;--kin-soft:#F1F0EC;--warn:#9F2F2D;
 --shadow:0 2px 8px rgba(0,0,0,.04);--shadow-sm:0 0 0 rgba(0,0,0,0);--ease:cubic-bezier(.16,1,.3,1);--grain:none}
@@ -334,7 +351,7 @@ header.site{background:rgba(255,255,255,.9)!important}
 <main class="wrap" id="list"></main>
 <footer class="wrap"><p>照片取自 Wikimedia Commons，作者與授權標在每張照片下方。照片存在「sights-img」資料夾，搬移這個網頁時請整個資料夾一起帶走。開放時間、票價以官網為準（資料查核日 2026/10/3）。</p></footer>
 <script>
-const S = [{"id": "kitano", "name": "神戶北野異人館街（北野異人館）", "group": "osaka", "sub": true, "areaLabel": "神戶・北野", "intro": "明治開港後，外國商人在神戶山坡上蓋起洋館，北野至今留有十多棟可入內參觀的「異人館」。招牌是紅磚尖塔頂著風見雞的「風見鶏の館」（國家重要文化財），附近淡綠色的「萌黄の館」也很好拍。坡道、石板小巷與咖啡店多，從三宮步行約 15 分鐘上坡。", "highlights": ["風見鶏の館：1909 年德國商人宅邸，紅磚外牆與屋頂風見雞", "萌黄の館：淡綠色木造洋館，二樓陽台可遠眺神戶港", "北野天滿神社高台：俯瞰風見鶏の館與三宮街景"], "hours": "街區全天可逛；風見鶏の館 9:00–17:00（最後入館 16:45，每月第 3 個週二休）；萌黄の館 9:30–18:00", "fee": "街區免費；風見鶏の館 500 円，風見鶏＋萌黄 2 館券 800 円；うろこの家等民營館另外收費", "season": "", "tickets": [{"item": "風見鶏の館 入館券（或風見鶏＋萌黄の館 2 館券）", "price": "500 円；2 館券 800 円（高中生以下免費）", "url": "https://kobe-kazamidori.com/guide/", "need_booking": false, "note": "現場購票即可，不需預約；持 City Loop 一日券入館 450 円。館內禁飲食、沒有廁所。", "tel": "078-242-3223"}], "tips": ["全區都是上坡與石階，穿好走的鞋；館內沒有廁所，先在北野觀光案內所上。"], "trip": [{"label": "從大阪（梅田・阪急電車）", "total_min": 49, "total_price": "約 330 円"}, {"label": "從大阪（なんば・阪神電車直達）", "total_min": 62, "total_price": "約 420 円"}], "access": "", "addr": "神戶北野異人館街", "official": "https://www.kobeijinkan.com/", "images": [{"file": "sights-img/kitano/w01.jpg", "caption": "香之家荷蘭館（12 月下旬攝）", "credit": "Suikotei, CC BY 4.0, https://commons.wikimedia.org/wiki/File:House_of_the_Netherlands_20251230.jpg"}, {"file": "sights-img/kitano/w02.jpg", "caption": "風見雞館（舊トーマス邸，1 月攝）", "credit": "Mulberry24, CC BY 2.0, https://commons.wikimedia.org/wiki/File:Former_Tohmas_House_20090129.jpg"}, {"file": "sights-img/kitano/w03.jpg", "caption": "星巴克神戶北野異人館店（舊洋館，1 月攝）", "credit": "nagi usano from Tokyo, Japan, CC BY 4.0, https://commons.wikimedia.org/wiki/File:%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%90%E3%83%83%E3%82%AF%E3%82%B9_%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC_%E7%A5%9E%E6%88%B8%E5%8C%97%E9%87%8E%E7%95%B0%E4%BA%BA%E9%A4%A8%E5%BA%97_(55063223592).jpg"}, {"file": "sights-img/kitano/w04.jpg", "caption": "風見雞館入口（12 月下旬攝）", "credit": "経済特区, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Thomas_house(2020-12-27).jpg"}, {"file": "sights-img/kitano/w05.jpg", "caption": "北野一帶的神戶正教會（12 月下旬攝）", "credit": "Abasaa, Public domain, https://commons.wikimedia.org/wiki/File:Kobe_Orthodox_Church.JPG"}, {"file": "sights-img/kitano/w06.jpg", "caption": "北野坂與不動坂路口的路標（12 月下旬攝）", "credit": "経済特区, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:%E5%8C%97%E9%87%8E%E5%9D%82%E3%81%A8%E4%B8%8D%E5%8B%95%E5%9D%822020-12-27-10-06-01-270.jpg"}], "book": false, "tel": "078-242-3223", "tags": [], "ota": []}];
+const S = [{"id": "kitano", "name": "神戶北野異人館街（北野異人館）", "group": "osaka", "sub": true, "areaLabel": "神戶・北野", "intro": "明治開港後，外國商人在神戶山坡上蓋起洋館，北野至今留有十多棟可入內參觀的「異人館」。招牌是紅磚尖塔頂著風見雞的「風見鶏の館」（國家重要文化財），附近淡綠色的「萌黄の館」也很好拍。坡道、石板小巷與咖啡店多，從三宮步行約 15 分鐘上坡。", "highlights": ["風見鶏の館：1909 年德國商人宅邸，紅磚外牆與屋頂風見雞", "萌黄の館：淡綠色木造洋館，二樓陽台可遠眺神戶港", "北野天滿神社高台：俯瞰風見鶏の館與三宮街景"], "hours": "街區全天可逛；風見鶏の館 9:00–17:00（最後入館 16:45，每月第 3 個週二休）；萌黄の館 9:30–18:00", "fee": "街區免費；風見鶏の館 500 円，風見鶏＋萌黄 2 館券 800 円；うろこの家等民營館另外收費", "season": "", "tickets": [{"item": "風見鶏の館 入館券（或風見鶏＋萌黄の館 2 館券）", "price": "500 円；2 館券 800 円（高中生以下免費）", "url": "https://kobe-kazamidori.com/guide/", "need_booking": false, "note": "現場購票即可，不需預約；持 City Loop 一日券入館 450 円。館內禁飲食、沒有廁所。", "tel": "078-242-3223"}], "tips": ["全區都是上坡與石階，穿好走的鞋；館內沒有廁所，先在北野觀光案內所上。"], "trip": [{"label": "從大阪（梅田・阪急電車）", "total_min": 49, "total_price": "約 330 円"}, {"label": "從大阪（なんば・阪神電車直達）", "total_min": 62, "total_price": "約 420 円"}], "access": "", "addr": "神戶北野異人館街", "official": "https://www.kobeijinkan.com/", "images": [{"file": "sights-img/kitano/w01.jpg", "caption": "香之家荷蘭館（12 月下旬攝）", "credit": "Suikotei, CC BY 4.0, https://commons.wikimedia.org/wiki/File:House_of_the_Netherlands_20251230.jpg"}, {"file": "sights-img/kitano/w02.jpg", "caption": "風見雞館（舊トーマス邸，1 月攝）", "credit": "Mulberry24, CC BY 2.0, https://commons.wikimedia.org/wiki/File:Former_Tohmas_House_20090129.jpg"}, {"file": "sights-img/kitano/w03.jpg", "caption": "星巴克神戶北野異人館店（舊洋館，1 月攝）", "credit": "nagi usano from Tokyo, Japan, CC BY 4.0, https://commons.wikimedia.org/wiki/File:%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%90%E3%83%83%E3%82%AF%E3%82%B9_%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC_%E7%A5%9E%E6%88%B8%E5%8C%97%E9%87%8E%E7%95%B0%E4%BA%BA%E9%A4%A8%E5%BA%97_(55063223592).jpg"}, {"file": "sights-img/kitano/w04.jpg", "caption": "風見雞館入口（12 月下旬攝）", "credit": "経済特区, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Thomas_house(2020-12-27).jpg"}, {"file": "sights-img/kitano/w05.jpg", "caption": "北野一帶的神戶正教會（12 月下旬攝）", "credit": "Abasaa, Public domain, https://commons.wikimedia.org/wiki/File:Kobe_Orthodox_Church.JPG"}, {"file": "sights-img/kitano/w06.jpg", "caption": "北野坂與不動坂路口的路標（12 月下旬攝）", "credit": "経済特区, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:%E5%8C%97%E9%87%8E%E5%9D%82%E3%81%A8%E4%B8%8D%E5%8B%95%E5%9D%822020-12-27-10-06-01-270.jpg"}], "book": false, "tel": "078-242-3223", "tags": [], "ota": [], "collage": "sights-img/kitano/c_86f88bea.jpg"}];
 const GROUPS = [['osaka','大阪'],['kyoto','京都']];
 const SOLO = document.documentElement.dataset.solo || '';   // 分享頁（s/景點.html）：只放這一張卡
 const st = {g:'all', q:''};
@@ -345,6 +362,7 @@ const telLink = n => n ? `<a class="tel" href="tel:+81${String(n).replace(/[^0-9
 const maps = s => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.addr || s.name);
 
 function carousel(s){
+  if (s.collage) return `<div class="car colg"><button type="button" class="lbopen" data-lb="${esc(s.id)}" aria-label="看 ${esc(s.name)} 的全部照片（${s.images.length} 張）"><img src="${esc(s.collage)}" alt="${esc(s.name)} 照片拼貼" loading="lazy" decoding="async"><span class="cnt">共 ${s.images.length} 張・點圖看大圖</span></button></div>`;
   if (!s.images.length) return `<div class="car"><div class="noimg">${esc(s.name)}</div></div>`;
   const n = s.images.length;
   return `<div class="car" data-id="${esc(s.id)}" data-i="0" tabindex="0" aria-roledescription="carousel" aria-label="${esc(s.name)} 照片">
@@ -432,6 +450,42 @@ document.addEventListener('click', e => {
   if (b.dataset.step) go(car, +car.dataset.i + +b.dataset.step);
   else if (b.dataset.go) go(car, +b.dataset.go);
 });
+/* ---------- 看大圖（拼貼卡片點下去） ---------- */
+const LB = {s:null, i:0};
+function lbEl(){
+  let el = $('#lb'); if (el) return el;
+  el = document.createElement('div'); el.id = 'lb'; el.className = 'lb'; el.hidden = true;
+  el.setAttribute('role','dialog'); el.setAttribute('aria-modal','true');
+  el.innerHTML = `<div class="lbtop"><span class="lbname"></span><span class="lbcount"></span><button type="button" class="lbx" aria-label="關閉">✕</button></div>
+    <div class="lbstage"><img class="lbimg" alt=""><button type="button" class="lbnav p" aria-label="上一張">‹</button><button type="button" class="lbnav n" aria-label="下一張">›</button></div>
+    <p class="lbcap"></p>`;
+  document.body.appendChild(el);
+  el.querySelector('.lbx').addEventListener('click', lbClose);
+  el.querySelector('.lbnav.p').addEventListener('click', () => lbGo(LB.i - 1));
+  el.querySelector('.lbnav.n').addEventListener('click', () => lbGo(LB.i + 1));
+  el.addEventListener('click', e => { if (e.target === el || e.target.classList.contains('lbstage')) lbClose(); });
+  let x0 = null;
+  el.addEventListener('pointerdown', e => { x0 = e.clientX; });
+  el.addEventListener('pointerup', e => { if (x0 === null) return; const dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 40) lbGo(LB.i + (dx < 0 ? 1 : -1)); });
+  return el;
+}
+function lbGo(i){
+  const s = LB.s, n = s.images.length; LB.i = (i + n) % n;
+  const el = lbEl(), im = s.images[LB.i];
+  el.querySelector('.lbimg').src = im.file; el.querySelector('.lbimg').alt = im.caption || s.name;
+  el.querySelector('.lbcount').textContent = `${LB.i + 1} / ${n}`;
+  el.querySelector('.lbcap').innerHTML = `${esc(im.caption || '')}<small>${esc(im.credit || '')}</small>`;
+  [LB.i + 1, LB.i - 1].forEach(j => { const p = s.images[(j + n) % n]; if (p) (new Image()).src = p.file; });   // 先載入前後一張
+}
+function lbOpen(id){
+  const s = S.find(x => x.id === id); if (!s || !s.images.length) return;
+  LB.s = s; const el = lbEl(); el.querySelector('.lbname').textContent = s.name;
+  el.querySelectorAll('.lbnav').forEach(b => b.hidden = s.images.length < 2);
+  lbGo(0); el.hidden = false; document.documentElement.classList.add('lbon'); el.querySelector('.lbx').focus();
+}
+function lbClose(){ const el = $('#lb'); if (el) el.hidden = true; document.documentElement.classList.remove('lbon'); }
+document.addEventListener('click', e => { const b = e.target.closest('[data-lb]'); if (b){ e.preventDefault(); lbOpen(b.dataset.lb); } });
+document.addEventListener('keydown', e => { const el = $('#lb'); if (!el || el.hidden) return; if (e.key === 'Escape') lbClose(); if (e.key === 'ArrowLeft') lbGo(LB.i - 1); if (e.key === 'ArrowRight') lbGo(LB.i + 1); });
 document.addEventListener('keydown', e => { const car = e.target.closest?.('.car'); if (!car) return; if (e.key==='ArrowLeft') go(car, +car.dataset.i-1); if (e.key==='ArrowRight') go(car, +car.dataset.i+1); });
 let sx = null, scar = null;
 document.addEventListener('pointerdown', e => { scar = e.target.closest('.car'); if (scar){ sx = e.clientX; scar.dataset.hold = '1'; } });
@@ -457,7 +511,11 @@ if (SOLO){
   if (h) h.innerHTML = `<p class="eyebrow">Sights</p><p class="back"><a href="sights.html#${esc(s.id)}">← 看全部景點</a></p>`;
 }
 render();
-const jump = () => { const h = location.hash.slice(1); const el = h && document.getElementById(h); if (el) el.scrollIntoView({block:'start'}); };
+// 畫面外的卡片用估計高度（content-visibility），跳到某張卡前先把全部卡片畫一次，位置才準（之後瀏覽器會記住實際高度）
+const raf2 = () => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+const jump = async () => { const h = decodeURIComponent(location.hash.slice(1)); const el = h && document.getElementById(h); if (!el) return;
+  const R = document.documentElement; R.classList.add('cvoff'); el.scrollIntoView({block:'start'}); await raf2();
+  R.classList.remove('cvoff'); await raf2(); el.scrollIntoView({block:'start'}); };
 jump(); window.addEventListener('load', jump);
 
 /* ---------- 行程籃（與「行程規劃」頁共用） ---------- */

@@ -62,7 +62,7 @@ main{padding-block:16px 48px}
 .area{margin-top:12px}
 .area>h3{font:600 16px var(--display);color:var(--muted);margin:0 0 10px;padding-bottom:6px;border-bottom:1px dashed var(--line)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:18px}
-.card{scroll-margin-top:120px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0;content-visibility:auto;contain-intrinsic-size:auto 900px}  /* 畫面外的卡片先不畫：景點多時捲動才不會卡 */
+.card{scroll-margin-top:120px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0;content-visibility:auto;contain-intrinsic-size:auto 1050px}  /* 畫面外的卡片先不畫：景點多時捲動才不會卡 */
 
 .car{position:relative;aspect-ratio:16/10;background:var(--ai-soft);overflow:hidden;max-width:100%;touch-action:pan-y}
 .track{display:flex;height:100%;transition:transform .55s ease}
@@ -223,6 +223,23 @@ select,input{border-radius:10px!important}
 .basketfab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;background:var(--kin);color:#fff!important;text-decoration:none;font:700 15px var(--body);padding:12px 18px;border-radius:999px;box-shadow:0 8px 24px rgba(217,105,46,.35)}
 .basketfab b{font-family:var(--mono);background:#fff;color:var(--kin);border-radius:999px;padding:0 8px;margin:0 2px}
 .basketfab[hidden]{display:none!important}
+.cvoff .card{content-visibility:visible!important}
+.colg .lbopen{display:block;width:100%;height:100%;padding:0;border:0;background:none;cursor:zoom-in;position:relative}
+.colg img{width:100%;height:100%;object-fit:cover;display:block}
+.colg .cnt{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.6);color:#fff;font:600 12px var(--body);padding:3px 10px;border-radius:999px}
+.lb{position:fixed;inset:0;z-index:1000;background:#0B0D14;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 8px) 12px calc(env(safe-area-inset-bottom,0px) + 12px);color:#fff}
+.lb[hidden]{display:none!important}
+.lbtop{display:flex;align-items:center;gap:10px;font:600 15px var(--body);min-height:44px}
+.lbname{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lbcount{font:600 13px var(--mono);opacity:.8}
+.lbx{transform:none!important;width:44px;height:44px;border:0;border-radius:999px;background:rgba(255,255,255,.14);color:#fff;font-size:20px;cursor:pointer}
+.lbstage{flex:1;min-height:0;position:relative;display:flex;align-items:center;justify-content:center;touch-action:pan-y}
+.lbimg{max-width:100%;max-height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
+.lbnav{position:absolute;top:calc(50% - 32px);transform:none!important;width:44px;height:64px;border:0;border-radius:10px;background:rgba(255,255,255,.14);color:#fff;font-size:30px;cursor:pointer}
+.lbnav.p{left:0}.lbnav.n{right:0}
+.lbcap{margin:10px 0 0;font-size:14px;line-height:1.5;text-align:center}
+.lbcap small{display:block;font-size:11px;opacity:.65;margin-top:2px;word-break:break-all}
+html.lbon,html.lbon body{overflow:hidden}
 .src{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:4px 0 0;font-size:13px;line-height:1.5}
 .src b{font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.08em}
 .src a{color:var(--ai);text-decoration:none;border-bottom:1px solid var(--ai-soft)}
@@ -236,7 +253,7 @@ select,input{border-radius:10px!important}
 .hero .back{margin:6px 0 0;font-size:15px}
 .hero .back a{color:var(--ai);font-weight:700;text-decoration:none}
 </style>
-<script src="jds.js?v=67efed56"></script>
+<script src="jds.js?v=c090dabd"></script>
 <style id="taste">/* 極簡編輯：骨白底、白卡、1px 淡線、幾乎無陰影、墨黑主按鈕、低飽和藍點綴 */
 :root{--paper:#F7F6F3;--surface:#FFFFFF;--ink:#2F3437;--muted:#787774;--line:#EAEAEA;--ai:#1F6C9F;--ai-soft:#E1F3FE;--kin:#2F3437;--kin-soft:#F1F0EC;--warn:#9F2F2D;
 --shadow:0 2px 8px rgba(0,0,0,.04);--shadow-sm:0 0 0 rgba(0,0,0,0);--ease:cubic-bezier(.16,1,.3,1);--grain:none}
@@ -334,7 +351,7 @@ header.site{background:rgba(255,255,255,.9)!important}
 <main class="wrap" id="list"></main>
 <footer class="wrap"><p>照片取自 Wikimedia Commons，作者與授權標在每張照片下方。照片存在「sights-img」資料夾，搬移這個網頁時請整個資料夾一起帶走。開放時間、票價以官網為準（資料查核日 2026/10/3）。</p></footer>
 <script>
-const S = [{"id": "kinkakuji", "name": "金閣寺（鹿苑寺・きんかくじ）", "group": "kyoto", "sub": false, "areaLabel": "金閣寺・衣笠", "intro": "正式名稱鹿苑寺，原是室町幕府三代將軍足利義滿的山莊「北山殿」，義滿死後改為禪寺。三層樓閣「舍利殿」二、三樓外貼金箔，倒映在鏡湖池上，是京都最經典的畫面。現在的金閣是 1950 年遭縱火燒毀後於 1955 年重建，參觀約 30–40 分鐘。", "highlights": ["鏡湖池倒映的金閣舍利殿（上午順光最亮）", "義滿親手栽種的「陸舟之松」與龍門瀑", "茶室夕佳亭與不動堂"], "hours": "9:00–17:00，全年無休", "fee": "大人（高中以上）500 円、中小學生 300 円", "season": "", "tickets": [], "tips": ["9:00 開門就到最好，10 點後團體與修學旅行學生大量湧入", "紅葉通常 11 月中下旬才轉紅，10 月底到 11 月初多半仍以綠葉為主", "寺方規定拍照僅限個人留念，原則上不允許為發布社群而拍攝，也禁止空拍與直播"], "trip": null, "access": "北大路站 北大路巴士總站（站內直通）・步行約 19 分", "addr": "金閣寺（鹿苑寺・きんかくじ）", "official": "https://www.shokoku-ji.jp/kinkakuji/", "images": [{"file": "sights-img/kinkakuji/w01.jpg", "caption": "雪中的金閣與鏡湖池（2 月攝）", "credit": "Fg2, Public domain, https://commons.wikimedia.org/wiki/File:Kinkaku-Snow-6.jpg"}, {"file": "sights-img/kinkakuji/w02.jpg", "caption": "白雪覆蓋的金閣寺庭園（1 月攝）", "credit": "Takeshi Kuboki from Amagasaki, Japan, CC BY 2.0, https://commons.wikimedia.org/wiki/File:%E9%9B%AA%E3%81%AE%E9%87%91%E9%96%A3%E5%AF%BA_Kinkakuji_temple_in_snow_(5360142743).jpg"}, {"file": "sights-img/kinkakuji/w03.jpg", "caption": "雪後放晴的金閣（1 月攝）", "credit": "Hiroaki Kaneko, CC BY-SA 3.0, https://commons.wikimedia.org/wiki/File:%E5%86%A0%E9%9B%AA%E3%81%AE%E9%87%91%E9%96%A3%E5%AF%BA_(Kinkaku-ji_covered_with_snow)_19_Jan,_2014_-_panoramio.jpg"}, {"file": "sights-img/kinkakuji/w04.jpg", "caption": "飄雪中的金閣（2 月攝）", "credit": "Lin Xiangru, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:%E9%87%91%E9%96%A3%E5%AF%BA_20260208_2.jpg"}, {"file": "sights-img/kinkakuji/w05.jpg", "caption": "鏡湖池結了薄冰（1 月攝）", "credit": "Manish Prabhune, CC BY 4.0, https://commons.wikimedia.org/wiki/File:Ky%C5%8Dko-chi_Pond_at_Kinkaku-ji_Frozen_on_January_1,_2011.jpg"}, {"file": "sights-img/kinkakuji/w06.jpg", "caption": "沒下雪的冬日晴天，金閣一樣耀眼（1 月攝）", "credit": "Alexander Mirochnik, CC BY-SA 3.0, https://commons.wikimedia.org/wiki/File:Kyoto_Kinkaku-ji.JPG"}], "book": false, "tel": "075-461-0013", "tags": [], "ota": [{"site": "Klook", "label": "天龍寺・嵐山竹林・金閣寺一日遊", "url": "https://www.klook.com/zh-TW/activity/114199-kyoto-tenryu-ji-arashiyama-bamboo-grove-kinkaku-ji-day-tour/"}, {"site": "Klook", "label": "金閣寺＆清水寺＆伏見稻荷一日遊（大阪出發）", "url": "https://www.klook.com/zh-TW/activity/87844-fushimi-inoha-shrine-kiyomizu-temple-bus-tour-osaka/"}, {"site": "KKday", "label": "京都巴士一日遊：嵐山・金閣寺・伏見稻荷（含門票）", "url": "https://www.kkday.com/zh-tw/product/13369-kyoto-tour-arashiyama-kinkakuji"}, {"site": "KKday", "label": "京都世界遺產一日遊（金閣寺・嵐山・三十三間堂・清水寺）", "url": "https://www.kkday.com/zh-tw/product/183450"}]}];
+const S = [{"id": "kinkakuji", "name": "金閣寺（鹿苑寺・きんかくじ）", "group": "kyoto", "sub": false, "areaLabel": "金閣寺・衣笠", "intro": "正式名稱鹿苑寺，原是室町幕府三代將軍足利義滿的山莊「北山殿」，義滿死後改為禪寺。三層樓閣「舍利殿」二、三樓外貼金箔，倒映在鏡湖池上，是京都最經典的畫面。現在的金閣是 1950 年遭縱火燒毀後於 1955 年重建，參觀約 30–40 分鐘。", "highlights": ["鏡湖池倒映的金閣舍利殿（上午順光最亮）", "義滿親手栽種的「陸舟之松」與龍門瀑", "茶室夕佳亭與不動堂"], "hours": "9:00–17:00，全年無休", "fee": "大人（高中以上）500 円、中小學生 300 円", "season": "", "tickets": [], "tips": ["9:00 開門就到最好，10 點後團體與修學旅行學生大量湧入", "紅葉通常 11 月中下旬才轉紅，10 月底到 11 月初多半仍以綠葉為主", "寺方規定拍照僅限個人留念，原則上不允許為發布社群而拍攝，也禁止空拍與直播"], "trip": null, "access": "北大路站 北大路巴士總站（站內直通）・步行約 19 分", "addr": "金閣寺（鹿苑寺・きんかくじ）", "official": "https://www.shokoku-ji.jp/kinkakuji/", "images": [{"file": "sights-img/kinkakuji/w01.jpg", "caption": "雪中的金閣與鏡湖池（2 月攝）", "credit": "Fg2, Public domain, https://commons.wikimedia.org/wiki/File:Kinkaku-Snow-6.jpg"}, {"file": "sights-img/kinkakuji/w02.jpg", "caption": "白雪覆蓋的金閣寺庭園（1 月攝）", "credit": "Takeshi Kuboki from Amagasaki, Japan, CC BY 2.0, https://commons.wikimedia.org/wiki/File:%E9%9B%AA%E3%81%AE%E9%87%91%E9%96%A3%E5%AF%BA_Kinkakuji_temple_in_snow_(5360142743).jpg"}, {"file": "sights-img/kinkakuji/w03.jpg", "caption": "雪後放晴的金閣（1 月攝）", "credit": "Hiroaki Kaneko, CC BY-SA 3.0, https://commons.wikimedia.org/wiki/File:%E5%86%A0%E9%9B%AA%E3%81%AE%E9%87%91%E9%96%A3%E5%AF%BA_(Kinkaku-ji_covered_with_snow)_19_Jan,_2014_-_panoramio.jpg"}, {"file": "sights-img/kinkakuji/w04.jpg", "caption": "飄雪中的金閣（2 月攝）", "credit": "Lin Xiangru, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:%E9%87%91%E9%96%A3%E5%AF%BA_20260208_2.jpg"}, {"file": "sights-img/kinkakuji/w05.jpg", "caption": "鏡湖池結了薄冰（1 月攝）", "credit": "Manish Prabhune, CC BY 4.0, https://commons.wikimedia.org/wiki/File:Ky%C5%8Dko-chi_Pond_at_Kinkaku-ji_Frozen_on_January_1,_2011.jpg"}, {"file": "sights-img/kinkakuji/w06.jpg", "caption": "沒下雪的冬日晴天，金閣一樣耀眼（1 月攝）", "credit": "Alexander Mirochnik, CC BY-SA 3.0, https://commons.wikimedia.org/wiki/File:Kyoto_Kinkaku-ji.JPG"}], "book": false, "tel": "075-461-0013", "tags": [], "ota": [{"site": "Klook", "label": "天龍寺・嵐山竹林・金閣寺一日遊", "url": "https://www.klook.com/zh-TW/activity/114199-kyoto-tenryu-ji-arashiyama-bamboo-grove-kinkaku-ji-day-tour/"}, {"site": "Klook", "label": "金閣寺＆清水寺＆伏見稻荷一日遊（大阪出發）", "url": "https://www.klook.com/zh-TW/activity/87844-fushimi-inoha-shrine-kiyomizu-temple-bus-tour-osaka/"}, {"site": "KKday", "label": "京都巴士一日遊：嵐山・金閣寺・伏見稻荷（含門票）", "url": "https://www.kkday.com/zh-tw/product/13369-kyoto-tour-arashiyama-kinkakuji"}, {"site": "KKday", "label": "京都世界遺產一日遊（金閣寺・嵐山・三十三間堂・清水寺）", "url": "https://www.kkday.com/zh-tw/product/183450"}], "collage": "sights-img/kinkakuji/c_c3767f2f.jpg"}];
 const GROUPS = [['osaka','大阪'],['kyoto','京都']];
 const SOLO = document.documentElement.dataset.solo || '';   // 分享頁（s/景點.html）：只放這一張卡
 const st = {g:'all', q:''};
@@ -345,6 +362,7 @@ const telLink = n => n ? `<a class="tel" href="tel:+81${String(n).replace(/[^0-9
 const maps = s => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.addr || s.name);
 
 function carousel(s){
+  if (s.collage) return `<div class="car colg"><button type="button" class="lbopen" data-lb="${esc(s.id)}" aria-label="看 ${esc(s.name)} 的全部照片（${s.images.length} 張）"><img src="${esc(s.collage)}" alt="${esc(s.name)} 照片拼貼" loading="lazy" decoding="async"><span class="cnt">共 ${s.images.length} 張・點圖看大圖</span></button></div>`;
   if (!s.images.length) return `<div class="car"><div class="noimg">${esc(s.name)}</div></div>`;
   const n = s.images.length;
   return `<div class="car" data-id="${esc(s.id)}" data-i="0" tabindex="0" aria-roledescription="carousel" aria-label="${esc(s.name)} 照片">
@@ -432,6 +450,42 @@ document.addEventListener('click', e => {
   if (b.dataset.step) go(car, +car.dataset.i + +b.dataset.step);
   else if (b.dataset.go) go(car, +b.dataset.go);
 });
+/* ---------- 看大圖（拼貼卡片點下去） ---------- */
+const LB = {s:null, i:0};
+function lbEl(){
+  let el = $('#lb'); if (el) return el;
+  el = document.createElement('div'); el.id = 'lb'; el.className = 'lb'; el.hidden = true;
+  el.setAttribute('role','dialog'); el.setAttribute('aria-modal','true');
+  el.innerHTML = `<div class="lbtop"><span class="lbname"></span><span class="lbcount"></span><button type="button" class="lbx" aria-label="關閉">✕</button></div>
+    <div class="lbstage"><img class="lbimg" alt=""><button type="button" class="lbnav p" aria-label="上一張">‹</button><button type="button" class="lbnav n" aria-label="下一張">›</button></div>
+    <p class="lbcap"></p>`;
+  document.body.appendChild(el);
+  el.querySelector('.lbx').addEventListener('click', lbClose);
+  el.querySelector('.lbnav.p').addEventListener('click', () => lbGo(LB.i - 1));
+  el.querySelector('.lbnav.n').addEventListener('click', () => lbGo(LB.i + 1));
+  el.addEventListener('click', e => { if (e.target === el || e.target.classList.contains('lbstage')) lbClose(); });
+  let x0 = null;
+  el.addEventListener('pointerdown', e => { x0 = e.clientX; });
+  el.addEventListener('pointerup', e => { if (x0 === null) return; const dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 40) lbGo(LB.i + (dx < 0 ? 1 : -1)); });
+  return el;
+}
+function lbGo(i){
+  const s = LB.s, n = s.images.length; LB.i = (i + n) % n;
+  const el = lbEl(), im = s.images[LB.i];
+  el.querySelector('.lbimg').src = im.file; el.querySelector('.lbimg').alt = im.caption || s.name;
+  el.querySelector('.lbcount').textContent = `${LB.i + 1} / ${n}`;
+  el.querySelector('.lbcap').innerHTML = `${esc(im.caption || '')}<small>${esc(im.credit || '')}</small>`;
+  [LB.i + 1, LB.i - 1].forEach(j => { const p = s.images[(j + n) % n]; if (p) (new Image()).src = p.file; });   // 先載入前後一張
+}
+function lbOpen(id){
+  const s = S.find(x => x.id === id); if (!s || !s.images.length) return;
+  LB.s = s; const el = lbEl(); el.querySelector('.lbname').textContent = s.name;
+  el.querySelectorAll('.lbnav').forEach(b => b.hidden = s.images.length < 2);
+  lbGo(0); el.hidden = false; document.documentElement.classList.add('lbon'); el.querySelector('.lbx').focus();
+}
+function lbClose(){ const el = $('#lb'); if (el) el.hidden = true; document.documentElement.classList.remove('lbon'); }
+document.addEventListener('click', e => { const b = e.target.closest('[data-lb]'); if (b){ e.preventDefault(); lbOpen(b.dataset.lb); } });
+document.addEventListener('keydown', e => { const el = $('#lb'); if (!el || el.hidden) return; if (e.key === 'Escape') lbClose(); if (e.key === 'ArrowLeft') lbGo(LB.i - 1); if (e.key === 'ArrowRight') lbGo(LB.i + 1); });
 document.addEventListener('keydown', e => { const car = e.target.closest?.('.car'); if (!car) return; if (e.key==='ArrowLeft') go(car, +car.dataset.i-1); if (e.key==='ArrowRight') go(car, +car.dataset.i+1); });
 let sx = null, scar = null;
 document.addEventListener('pointerdown', e => { scar = e.target.closest('.car'); if (scar){ sx = e.clientX; scar.dataset.hold = '1'; } });
@@ -457,7 +511,11 @@ if (SOLO){
   if (h) h.innerHTML = `<p class="eyebrow">Sights</p><p class="back"><a href="sights.html#${esc(s.id)}">← 看全部景點</a></p>`;
 }
 render();
-const jump = () => { const h = location.hash.slice(1); const el = h && document.getElementById(h); if (el) el.scrollIntoView({block:'start'}); };
+// 畫面外的卡片用估計高度（content-visibility），跳到某張卡前先把全部卡片畫一次，位置才準（之後瀏覽器會記住實際高度）
+const raf2 = () => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+const jump = async () => { const h = decodeURIComponent(location.hash.slice(1)); const el = h && document.getElementById(h); if (!el) return;
+  const R = document.documentElement; R.classList.add('cvoff'); el.scrollIntoView({block:'start'}); await raf2();
+  R.classList.remove('cvoff'); await raf2(); el.scrollIntoView({block:'start'}); };
 jump(); window.addEventListener('load', jump);
 
 /* ---------- 行程籃（與「行程規劃」頁共用） ---------- */

@@ -62,7 +62,7 @@ main{padding-block:16px 48px}
 .area{margin-top:12px}
 .area>h3{font:600 16px var(--display);color:var(--muted);margin:0 0 10px;padding-bottom:6px;border-bottom:1px dashed var(--line)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:18px}
-.card{scroll-margin-top:120px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0;content-visibility:auto;contain-intrinsic-size:auto 900px}  /* 畫面外的卡片先不畫：景點多時捲動才不會卡 */
+.card{scroll-margin-top:120px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0;content-visibility:auto;contain-intrinsic-size:auto 1050px}  /* 畫面外的卡片先不畫：景點多時捲動才不會卡 */
 
 .car{position:relative;aspect-ratio:16/10;background:var(--ai-soft);overflow:hidden;max-width:100%;touch-action:pan-y}
 .track{display:flex;height:100%;transition:transform .55s ease}
@@ -223,6 +223,23 @@ select,input{border-radius:10px!important}
 .basketfab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;background:var(--kin);color:#fff!important;text-decoration:none;font:700 15px var(--body);padding:12px 18px;border-radius:999px;box-shadow:0 8px 24px rgba(217,105,46,.35)}
 .basketfab b{font-family:var(--mono);background:#fff;color:var(--kin);border-radius:999px;padding:0 8px;margin:0 2px}
 .basketfab[hidden]{display:none!important}
+.cvoff .card{content-visibility:visible!important}
+.colg .lbopen{display:block;width:100%;height:100%;padding:0;border:0;background:none;cursor:zoom-in;position:relative}
+.colg img{width:100%;height:100%;object-fit:cover;display:block}
+.colg .cnt{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.6);color:#fff;font:600 12px var(--body);padding:3px 10px;border-radius:999px}
+.lb{position:fixed;inset:0;z-index:1000;background:#0B0D14;display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 8px) 12px calc(env(safe-area-inset-bottom,0px) + 12px);color:#fff}
+.lb[hidden]{display:none!important}
+.lbtop{display:flex;align-items:center;gap:10px;font:600 15px var(--body);min-height:44px}
+.lbname{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lbcount{font:600 13px var(--mono);opacity:.8}
+.lbx{transform:none!important;width:44px;height:44px;border:0;border-radius:999px;background:rgba(255,255,255,.14);color:#fff;font-size:20px;cursor:pointer}
+.lbstage{flex:1;min-height:0;position:relative;display:flex;align-items:center;justify-content:center;touch-action:pan-y}
+.lbimg{max-width:100%;max-height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
+.lbnav{position:absolute;top:calc(50% - 32px);transform:none!important;width:44px;height:64px;border:0;border-radius:10px;background:rgba(255,255,255,.14);color:#fff;font-size:30px;cursor:pointer}
+.lbnav.p{left:0}.lbnav.n{right:0}
+.lbcap{margin:10px 0 0;font-size:14px;line-height:1.5;text-align:center}
+.lbcap small{display:block;font-size:11px;opacity:.65;margin-top:2px;word-break:break-all}
+html.lbon,html.lbon body{overflow:hidden}
 .src{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:4px 0 0;font-size:13px;line-height:1.5}
 .src b{font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.08em}
 .src a{color:var(--ai);text-decoration:none;border-bottom:1px solid var(--ai-soft)}
@@ -236,7 +253,7 @@ select,input{border-radius:10px!important}
 .hero .back{margin:6px 0 0;font-size:15px}
 .hero .back a{color:var(--ai);font-weight:700;text-decoration:none}
 </style>
-<script src="jds.js?v=67efed56"></script>
+<script src="jds.js?v=c090dabd"></script>
 <style id="taste">/* 極簡編輯：骨白底、白卡、1px 淡線、幾乎無陰影、墨黑主按鈕、低飽和藍點綴 */
 :root{--paper:#F7F6F3;--surface:#FFFFFF;--ink:#2F3437;--muted:#787774;--line:#EAEAEA;--ai:#1F6C9F;--ai-soft:#E1F3FE;--kin:#2F3437;--kin-soft:#F1F0EC;--warn:#9F2F2D;
 --shadow:0 2px 8px rgba(0,0,0,.04);--shadow-sm:0 0 0 rgba(0,0,0,0);--ease:cubic-bezier(.16,1,.3,1);--grain:none}
@@ -334,7 +351,7 @@ header.site{background:rgba(255,255,255,.9)!important}
 <main class="wrap" id="list"></main>
 <footer class="wrap"><p>照片取自 Wikimedia Commons，作者與授權標在每張照片下方。照片存在「sights-img」資料夾，搬移這個網頁時請整個資料夾一起帶走。開放時間、票價以官網為準（資料查核日 2026/10/3）。</p></footer>
 <script>
-const S = [{"id": "teamlabbotanical", "name": "長居植物園＋teamLab 植物園 大阪（ながいしょくぶつえん・チームラボ ボタニカルガーデン 大阪）", "group": "osaka", "sub": false, "areaLabel": "長居公園", "intro": "大阪市南部長居公園裡的市立植物園，白天賞花散步，晚上變成 teamLab 的光影藝術展。1–2 月白天有早開的梅花、黃色蠟梅和山茶花，大池邊的水鳥與落葉後的水杉林很有冬天的氣氛，園內道路平坦，推嬰兒車、輪椅都方便。天黑後的「teamLab 植物園 大阪」是戶外散步約 1 小時的路線：池面漂著會隨人靠近而變色的光球，樹木、花草依人的動作亮起顏色、發出聲音。白天賞花、晚上看光影，可以排成一個下午到晚上；夜裡很冷，要穿厚外套。", "highlights": ["白天（冬季）：早開的梅花、蠟梅、山茶花，冰鬱金香展（往年 1 月，2027 年待確認），大池與水杉林的冬景", "teamLab（天黑後）：光球漂在苔原和池面上，人一靠近就變色、發出聲響", "大池周邊的樹林、花草依人的動作亮起不同顏色，整座植物園就是一個作品", "園內道路平坦，白天、夜間都能推嬰兒車；中學生以下白天免費入園"], "hours": "植物園（白天）：11–2 月 9:30–16:30（最後入園 16:00），週一休（遇假日順延）、12/28–1/4 休；teamLab（夜間）：冬季 18:00–21:30（最後入場 20:30），不定期休（2027/1/18 已公布休），2027 年 2 月時間待官網公布", "fee": "植物園：大人 300 円、高中大學生 200 円、國中以下免費；teamLab 網路票（日期指定、價格浮動）大人（高中以上）約 1,800 円起、國中小約 500 円起、未就學兒免費（現場買大人 +200 円、兒童 +100 円，只賣當天、可能售完）", "season": "", "tickets": [{"item": "teamLab Botanical Garden Osaka 入場券（日期指定）", "price": "大人約 1,800 円起／兒童約 500 円起（浮動）", "url": "https://www.teamlab.art/jp/e/botanicalgarden/", "need_booking": true, "note": "官網、Klook、KKday 都有賣。官網票在入場當天 21:00 前可以在 QR 票券頁面自行取消；最終入場 20:30 後就不能進場。", "tel": "06-6699-5120"}], "tips": ["2027/2/2–2/6 期間：白天植物園 2/2（二）–2/6（六）都開（週一休）；teamLab 官網目前公布到 2027/1/31 是 18:00–21:30（最後入場 20:30），2 月的時間和休園日要出發前再看官網。", "白天和晚上是分開的票：白天逛完植物園，傍晚出園後再憑 teamLab 票從夜間入口入場。", "從西九條住處：JR 環狀線到天王寺轉地下鐵御堂筋線到長居，約 30 分、440 円；長居站 3 號出口往東步行約 10 分到植物園入口。", "全程在戶外、天黑後很冷，帽子、手套、暖暖包都要帶；園內暗、遇雨地面會泥濘，穿好走的鞋。", "長輩如果走不了 1 小時，可以只走大池周邊一圈（約 30 分）。園內有廁所，但沒有正式餐廳（假日偶有餐車），晚餐在天王寺或長居站附近吃。", "回程可以叫計程車：長居公園西南入口附近有計程車招呼站。"], "trip": null, "access": "長居站 3號出口・步行約 10 分", "addr": "大阪府大阪市東住吉区長居公園1-23", "official": "https://www.teamlab.art/jp/e/botanicalgarden/", "images": [{"file": "sights-img/teamlabbotanical/01.jpg", "caption": "落葉後的水杉林（2 月攝）", "credit": "Laitche, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Forest_of_metasequoia_glyptostroboides_at_Nagai_Botanical_Garden,_February_2024_-_8010.jpg"}, {"file": "sights-img/teamlabbotanical/02.jpg", "caption": "早開的紅梅「紅筆」（1 月攝）", "credit": "Laitche, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Flowers_of_Prunus_mume_(Armeniaca_mume‘Benifude’),_Nagai_Botanical_Garden,_January_2026_-0923.jpg"}, {"file": "sights-img/teamlabbotanical/03.jpg", "caption": "冬天盛開的蠟梅（1 月攝）", "credit": "Laitche, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Chimonanthus_praecox_f._concolor,_Nagai_Botanical_Garden,_January_2026_-1841.jpg"}, {"file": "sights-img/teamlabbotanical/04.jpg", "caption": "冬天的池畔與水杉倒影（1 月攝）", "credit": "Laitche, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Winter_view_of_a_small_pond_at_Nagai_Botanical_Garden,_January_2026_-_2662.jpg"}, {"file": "sights-img/teamlabbotanical/05.jpg", "caption": "白梅「豐後」（2 月攝）", "credit": "Laitche, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Flowers_of_Prunus_mume_(Armenaca_mume_‘Bumpi’)_at_Nagai_Botanical_Garden,_February_2024_-_5452.jpg"}, {"file": "sights-img/teamlabbotanical/06.jpg", "caption": "冬季「冰鬱金香」展（2026 年 1 月攝）", "credit": "Laitche, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Tulip_from_the_Ice_Tulip_Fair,_Nagai_Botanical_Garden,_January_2026_-_3350.jpg"}, {"file": "sights-img/teamlabbotanical/07.jpg", "caption": "teamLab：森林中會隨人觸碰變色的光之卵", "credit": "teamLab, teamLab Botanical Garden Osaka 官網照片, https://www.teamlab.art/jp/e/botanicalgarden/"}, {"file": "sights-img/teamlabbotanical/08.jpg", "caption": "teamLab：漂在大池上的發光球體", "credit": "teamLab, teamLab Botanical Garden Osaka 官網照片, https://www.teamlab.art/jp/e/botanicalgarden/"}, {"file": "sights-img/teamlabbotanical/09.jpg", "caption": "teamLab：大池對岸被光照亮的樹林", "credit": "teamLab, teamLab Botanical Garden Osaka 官網照片, https://www.teamlab.art/jp/e/botanicalgarden/"}, {"file": "sights-img/teamlabbotanical/10.jpg", "caption": "teamLab：投影在岩石上的光影作品", "credit": "teamLab, teamLab Botanical Garden Osaka 官網照片, https://www.teamlab.art/jp/e/botanicalgarden/"}], "book": true, "tel": "06-6699-5120", "tags": ["winter"], "ota": [{"site": "Klook", "label": "teamLab 植物園 大阪 門票", "url": "https://www.klook.com/zh-TW/activity/73632-teamlab-botanical-garden-osaka/"}, {"site": "KKday", "label": "teamLab 植物園 大阪 電子門票", "url": "https://www.kkday.com/zh-tw/product/136858-japan-nagai-teamlab-botanical-garden-osaka-e-ticket"}]}];
+const S = [{"id": "teamlabbotanical", "name": "長居植物園＋teamLab 植物園 大阪（ながいしょくぶつえん・チームラボ ボタニカルガーデン 大阪）", "group": "osaka", "sub": false, "areaLabel": "長居公園", "intro": "大阪市南部長居公園裡的市立植物園，白天賞花散步，晚上變成 teamLab 的光影藝術展。1–2 月白天有早開的梅花、黃色蠟梅和山茶花，大池邊的水鳥與落葉後的水杉林很有冬天的氣氛，園內道路平坦，推嬰兒車、輪椅都方便。天黑後的「teamLab 植物園 大阪」是戶外散步約 1 小時的路線：池面漂著會隨人靠近而變色的光球，樹木、花草依人的動作亮起顏色、發出聲音。白天賞花、晚上看光影，可以排成一個下午到晚上；夜裡很冷，要穿厚外套。", "highlights": ["白天（冬季）：早開的梅花、蠟梅、山茶花，冰鬱金香展（往年 1 月，2027 年待確認），大池與水杉林的冬景", "teamLab（天黑後）：光球漂在苔原和池面上，人一靠近就變色、發出聲響", "大池周邊的樹林、花草依人的動作亮起不同顏色，整座植物園就是一個作品", "園內道路平坦，白天、夜間都能推嬰兒車；中學生以下白天免費入園"], "hours": "植物園（白天）：11–2 月 9:30–16:30（最後入園 16:00），週一休（遇假日順延）、12/28–1/4 休；teamLab（夜間）：冬季 18:00–21:30（最後入場 20:30），不定期休（2027/1/18 已公布休），2027 年 2 月時間待官網公布", "fee": "植物園：大人 300 円、高中大學生 200 円、國中以下免費；teamLab 網路票（日期指定、價格浮動）大人（高中以上）約 1,800 円起、國中小約 500 円起、未就學兒免費（現場買大人 +200 円、兒童 +100 円，只賣當天、可能售完）", "season": "", "tickets": [{"item": "teamLab Botanical Garden Osaka 入場券（日期指定）", "price": "大人約 1,800 円起／兒童約 500 円起（浮動）", "url": "https://www.teamlab.art/jp/e/botanicalgarden/", "need_booking": true, "note": "官網、Klook、KKday 都有賣。官網票在入場當天 21:00 前可以在 QR 票券頁面自行取消；最終入場 20:30 後就不能進場。", "tel": "06-6699-5120"}], "tips": ["2027/2/2–2/6 期間：白天植物園 2/2（二）–2/6（六）都開（週一休）；teamLab 官網目前公布到 2027/1/31 是 18:00–21:30（最後入場 20:30），2 月的時間和休園日要出發前再看官網。", "白天和晚上是分開的票：白天逛完植物園，傍晚出園後再憑 teamLab 票從夜間入口入場。", "從西九條住處：JR 環狀線到天王寺轉地下鐵御堂筋線到長居，約 30 分、440 円；長居站 3 號出口往東步行約 10 分到植物園入口。", "全程在戶外、天黑後很冷，帽子、手套、暖暖包都要帶；園內暗、遇雨地面會泥濘，穿好走的鞋。", "長輩如果走不了 1 小時，可以只走大池周邊一圈（約 30 分）。園內有廁所，但沒有正式餐廳（假日偶有餐車），晚餐在天王寺或長居站附近吃。", "回程可以叫計程車：長居公園西南入口附近有計程車招呼站。"], "trip": null, "access": "長居站 3號出口・步行約 10 分", "addr": "大阪府大阪市東住吉区長居公園1-23", "official": "https://www.teamlab.art/jp/e/botanicalgarden/", "images": [{"file": "sights-img/teamlabbotanical/01.jpg", "caption": "落葉後的水杉林（2 月攝）", "credit": "Laitche, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Forest_of_metasequoia_glyptostroboides_at_Nagai_Botanical_Garden,_February_2024_-_8010.jpg"}, {"file": "sights-img/teamlabbotanical/02.jpg", "caption": "早開的紅梅「紅筆」（1 月攝）", "credit": "Laitche, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Flowers_of_Prunus_mume_(Armeniaca_mume‘Benifude’),_Nagai_Botanical_Garden,_January_2026_-0923.jpg"}, {"file": "sights-img/teamlabbotanical/03.jpg", "caption": "冬天盛開的蠟梅（1 月攝）", "credit": "Laitche, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Chimonanthus_praecox_f._concolor,_Nagai_Botanical_Garden,_January_2026_-1841.jpg"}, {"file": "sights-img/teamlabbotanical/04.jpg", "caption": "冬天的池畔與水杉倒影（1 月攝）", "credit": "Laitche, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Winter_view_of_a_small_pond_at_Nagai_Botanical_Garden,_January_2026_-_2662.jpg"}, {"file": "sights-img/teamlabbotanical/05.jpg", "caption": "白梅「豐後」（2 月攝）", "credit": "Laitche, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Flowers_of_Prunus_mume_(Armenaca_mume_‘Bumpi’)_at_Nagai_Botanical_Garden,_February_2024_-_5452.jpg"}, {"file": "sights-img/teamlabbotanical/06.jpg", "caption": "冬季「冰鬱金香」展（2026 年 1 月攝）", "credit": "Laitche, CC BY-SA 4.0, https://commons.wikimedia.org/wiki/File:Tulip_from_the_Ice_Tulip_Fair,_Nagai_Botanical_Garden,_January_2026_-_3350.jpg"}, {"file": "sights-img/teamlabbotanical/07.jpg", "caption": "teamLab：森林中會隨人觸碰變色的光之卵", "credit": "teamLab, teamLab Botanical Garden Osaka 官網照片, https://www.teamlab.art/jp/e/botanicalgarden/"}, {"file": "sights-img/teamlabbotanical/08.jpg", "caption": "teamLab：漂在大池上的發光球體", "credit": "teamLab, teamLab Botanical Garden Osaka 官網照片, https://www.teamlab.art/jp/e/botanicalgarden/"}, {"file": "sights-img/teamlabbotanical/09.jpg", "caption": "teamLab：大池對岸被光照亮的樹林", "credit": "teamLab, teamLab Botanical Garden Osaka 官網照片, https://www.teamlab.art/jp/e/botanicalgarden/"}, {"file": "sights-img/teamlabbotanical/10.jpg", "caption": "teamLab：投影在岩石上的光影作品", "credit": "teamLab, teamLab Botanical Garden Osaka 官網照片, https://www.teamlab.art/jp/e/botanicalgarden/"}], "book": true, "tel": "06-6699-5120", "tags": ["winter"], "ota": [{"site": "Klook", "label": "teamLab 植物園 大阪 門票", "url": "https://www.klook.com/zh-TW/activity/73632-teamlab-botanical-garden-osaka/"}, {"site": "KKday", "label": "teamLab 植物園 大阪 電子門票", "url": "https://www.kkday.com/zh-tw/product/136858-japan-nagai-teamlab-botanical-garden-osaka-e-ticket"}], "collage": "sights-img/teamlabbotanical/c_9445134d.jpg"}];
 const GROUPS = [['osaka','大阪'],['kyoto','京都']];
 const SOLO = document.documentElement.dataset.solo || '';   // 分享頁（s/景點.html）：只放這一張卡
 const st = {g:'all', q:''};
@@ -345,6 +362,7 @@ const telLink = n => n ? `<a class="tel" href="tel:+81${String(n).replace(/[^0-9
 const maps = s => 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.addr || s.name);
 
 function carousel(s){
+  if (s.collage) return `<div class="car colg"><button type="button" class="lbopen" data-lb="${esc(s.id)}" aria-label="看 ${esc(s.name)} 的全部照片（${s.images.length} 張）"><img src="${esc(s.collage)}" alt="${esc(s.name)} 照片拼貼" loading="lazy" decoding="async"><span class="cnt">共 ${s.images.length} 張・點圖看大圖</span></button></div>`;
   if (!s.images.length) return `<div class="car"><div class="noimg">${esc(s.name)}</div></div>`;
   const n = s.images.length;
   return `<div class="car" data-id="${esc(s.id)}" data-i="0" tabindex="0" aria-roledescription="carousel" aria-label="${esc(s.name)} 照片">
@@ -432,6 +450,42 @@ document.addEventListener('click', e => {
   if (b.dataset.step) go(car, +car.dataset.i + +b.dataset.step);
   else if (b.dataset.go) go(car, +b.dataset.go);
 });
+/* ---------- 看大圖（拼貼卡片點下去） ---------- */
+const LB = {s:null, i:0};
+function lbEl(){
+  let el = $('#lb'); if (el) return el;
+  el = document.createElement('div'); el.id = 'lb'; el.className = 'lb'; el.hidden = true;
+  el.setAttribute('role','dialog'); el.setAttribute('aria-modal','true');
+  el.innerHTML = `<div class="lbtop"><span class="lbname"></span><span class="lbcount"></span><button type="button" class="lbx" aria-label="關閉">✕</button></div>
+    <div class="lbstage"><img class="lbimg" alt=""><button type="button" class="lbnav p" aria-label="上一張">‹</button><button type="button" class="lbnav n" aria-label="下一張">›</button></div>
+    <p class="lbcap"></p>`;
+  document.body.appendChild(el);
+  el.querySelector('.lbx').addEventListener('click', lbClose);
+  el.querySelector('.lbnav.p').addEventListener('click', () => lbGo(LB.i - 1));
+  el.querySelector('.lbnav.n').addEventListener('click', () => lbGo(LB.i + 1));
+  el.addEventListener('click', e => { if (e.target === el || e.target.classList.contains('lbstage')) lbClose(); });
+  let x0 = null;
+  el.addEventListener('pointerdown', e => { x0 = e.clientX; });
+  el.addEventListener('pointerup', e => { if (x0 === null) return; const dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 40) lbGo(LB.i + (dx < 0 ? 1 : -1)); });
+  return el;
+}
+function lbGo(i){
+  const s = LB.s, n = s.images.length; LB.i = (i + n) % n;
+  const el = lbEl(), im = s.images[LB.i];
+  el.querySelector('.lbimg').src = im.file; el.querySelector('.lbimg').alt = im.caption || s.name;
+  el.querySelector('.lbcount').textContent = `${LB.i + 1} / ${n}`;
+  el.querySelector('.lbcap').innerHTML = `${esc(im.caption || '')}<small>${esc(im.credit || '')}</small>`;
+  [LB.i + 1, LB.i - 1].forEach(j => { const p = s.images[(j + n) % n]; if (p) (new Image()).src = p.file; });   // 先載入前後一張
+}
+function lbOpen(id){
+  const s = S.find(x => x.id === id); if (!s || !s.images.length) return;
+  LB.s = s; const el = lbEl(); el.querySelector('.lbname').textContent = s.name;
+  el.querySelectorAll('.lbnav').forEach(b => b.hidden = s.images.length < 2);
+  lbGo(0); el.hidden = false; document.documentElement.classList.add('lbon'); el.querySelector('.lbx').focus();
+}
+function lbClose(){ const el = $('#lb'); if (el) el.hidden = true; document.documentElement.classList.remove('lbon'); }
+document.addEventListener('click', e => { const b = e.target.closest('[data-lb]'); if (b){ e.preventDefault(); lbOpen(b.dataset.lb); } });
+document.addEventListener('keydown', e => { const el = $('#lb'); if (!el || el.hidden) return; if (e.key === 'Escape') lbClose(); if (e.key === 'ArrowLeft') lbGo(LB.i - 1); if (e.key === 'ArrowRight') lbGo(LB.i + 1); });
 document.addEventListener('keydown', e => { const car = e.target.closest?.('.car'); if (!car) return; if (e.key==='ArrowLeft') go(car, +car.dataset.i-1); if (e.key==='ArrowRight') go(car, +car.dataset.i+1); });
 let sx = null, scar = null;
 document.addEventListener('pointerdown', e => { scar = e.target.closest('.car'); if (scar){ sx = e.clientX; scar.dataset.hold = '1'; } });
@@ -457,7 +511,11 @@ if (SOLO){
   if (h) h.innerHTML = `<p class="eyebrow">Sights</p><p class="back"><a href="sights.html#${esc(s.id)}">← 看全部景點</a></p>`;
 }
 render();
-const jump = () => { const h = location.hash.slice(1); const el = h && document.getElementById(h); if (el) el.scrollIntoView({block:'start'}); };
+// 畫面外的卡片用估計高度（content-visibility），跳到某張卡前先把全部卡片畫一次，位置才準（之後瀏覽器會記住實際高度）
+const raf2 = () => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+const jump = async () => { const h = decodeURIComponent(location.hash.slice(1)); const el = h && document.getElementById(h); if (!el) return;
+  const R = document.documentElement; R.classList.add('cvoff'); el.scrollIntoView({block:'start'}); await raf2();
+  R.classList.remove('cvoff'); await raf2(); el.scrollIntoView({block:'start'}); };
 jump(); window.addEventListener('load', jump);
 
 /* ---------- 行程籃（與「行程規劃」頁共用） ---------- */
