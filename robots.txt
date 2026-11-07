@@ -1,2 +1,13 @@
+User-agent: facebookexternalhit
+User-agent: line-poker
+User-agent: Twitterbot
+User-agent: TelegramBot
+User-agent: WhatsApp
+User-agent: Discordbot
+User-agent: Slackbot-LinkExpanding
+Allow: /s/
+Allow: /sights-img/
+Disallow: /
+
 User-agent: *
 Disallow: /
