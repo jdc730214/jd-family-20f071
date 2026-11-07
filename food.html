@@ -207,6 +207,14 @@ select,input{border-radius:10px!important}
 .basketfab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;background:var(--kin);color:#fff!important;text-decoration:none;font:700 15px var(--body);padding:12px 18px;border-radius:999px;box-shadow:0 8px 24px rgba(217,105,46,.35)}
 .basketfab b{font-family:var(--mono);background:#fff;color:var(--kin);border-radius:999px;padding:0 8px;margin:0 2px}
 .basketfab[hidden]{display:none!important}
+
+.share{font:500 13px var(--body);border:1px solid var(--kin)!important;background:var(--kin-soft);color:var(--kin)!important;padding:4px 12px;border-radius:999px;cursor:pointer;margin-left:auto}
+.share::before{content:"↗ "}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:60;max-width:min(92vw,520px);background:var(--ink);color:var(--surface);font:500 14px/1.5 var(--body);padding:10px 16px;border-radius:12px;box-shadow:0 8px 24px rgba(20,25,40,.25)}
+.toast .tourl{width:100%;margin-top:6px;font:13px var(--mono);padding:6px 8px;border-radius:6px;border:0}
+.solo{max-width:760px;margin-inline:auto;padding-block:8px 32px}
+.hero .back{margin:6px 0 0;font-size:15px}
+.hero .back a{color:var(--ai);font-weight:700;text-decoration:none}
 </style>
 <script src="jds.js?v=bf8a1ccd"></script>
 <style id="taste">/* 極簡編輯：骨白底、白卡、1px 淡線、幾乎無陰影、墨黑主按鈕、低飽和藍點綴 */
@@ -320,6 +328,7 @@ const st = {c:'all', lv:'all', rv:false, q:''};
 try { Object.assign(st, JSON.parse(localStorage.getItem('food-f')||'{}'), {q:''}); } catch(e) {}
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const SOLO = document.documentElement.dataset.solo || '';   // 分享頁（s/food-店.html）：只放這一家
 const R = F.flatMap(c => c.areas.flatMap(a => a.restaurants.map(r => ({...r, cityKey: c.key, area: a.area}))));
 const DISH = Object.fromEntries(F.flatMap(c => c.dishes.map(d => [d.id, d])));
 const telLink = n => n ? `<a class="tel" href="tel:+81${String(n).replace(/[^0-9]/g,'').replace(/^0/,'')}">☎ ${esc(n)}</a>` : '';
@@ -348,10 +357,11 @@ function card(r){
         <dt>預約</dt><dd><span class="rv${r.reserve==='必須預約'?' must':''}">${esc(r.reserve)}</span>${r.tel ? ' '+telLink(r.tel) : (r.reserve!=='不需預約' ? ' <span class="note">（無電話，請用網路訂位）</span>' : '')}</dd>
       </dl>
       ${r.note ? `<div class="note">${esc(r.note)}</div>` : ''}
-      <div class="links"><a class="go" href="route.html#${esc(r.id)}">地鐵怎麼去</a>${r.reserve_url ? `<a href="${esc(r.reserve_url)}" target="_blank" rel="noopener">訂位 ↗</a>` : ''}${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${/tabelog/.test(r.url) ? 'Tabelog' : '官網'} ↗</a>` : ''}<a href="${maps(r)}" target="_blank" rel="noopener">Google 地圖</a></div>
+      <div class="links"><a class="go" href="route.html#${esc(r.id)}">地鐵怎麼去</a>${r.reserve_url ? `<a href="${esc(r.reserve_url)}" target="_blank" rel="noopener">訂位 ↗</a>` : ''}${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">${/tabelog/.test(r.url) ? 'Tabelog' : '官網'} ↗</a>` : ''}<a href="${maps(r)}" target="_blank" rel="noopener">Google 地圖</a><button type="button" class="share" data-share-url="s/food-${esc(r.id)}.html" data-share-title="${esc(r.name)}" aria-label="分享「${esc(r.name)}」">分享</button></div>
     </div></article>`;
 }
 function render(){
+  if (SOLO){ renderList(); return; }
   $('#cityRow').innerHTML = '<span class="flabel">地區</span>' + [['all','全部'], ...CITY].map(([k,l]) => `<button type="button" class="chip" data-c="${k}" aria-pressed="${st.c===k}">${l}<span class="n">${R.filter(r => k==='all' || r.cityKey===k).length}</span></button>`).join('') +
     `<input class="search" id="q" type="search" placeholder="搜尋店名、料理（可打同音字）" aria-label="搜尋" value="${esc(st.q)}">`;
   $('#lvRow').innerHTML = '<span class="flabel">價位</span>' + [['all','全部'],['低','¥ 平價'],['中','¥¥ 中價'],['高','¥¥¥ 高價']].map(([k,l]) => `<button type="button" class="chip" data-lv="${k}" aria-pressed="${st.lv===k}">${l}</button>`).join('') +
@@ -360,6 +370,7 @@ function render(){
   renderList();
 }
 function renderList(){
+  if (SOLO){ const r = R.find(x => x.id === SOLO); $('#list').innerHTML = r ? `<div class="solo">${card(r)}</div>` : ''; return; }
   const out = F.filter(c => st.c==='all' || c.key===st.c).map(c => {
     const areas = c.areas.map(a => ({...a, rs: a.restaurants.map(r => ({...r, cityKey:c.key, area:a.area})).filter(match)})).filter(a => a.rs.length);
     if (!areas.length && !c.dishes.length) return '';
@@ -379,6 +390,11 @@ document.addEventListener('click', e => {
   else if (b.dataset.lv){ st.lv = b.dataset.lv; render(); }
   else if (b.dataset.rv){ st.rv = !st.rv; render(); }
 });
+if (SOLO){
+  document.querySelector('.filters')?.remove();
+  const h = document.querySelector('.hero');
+  if (h) h.innerHTML = `<p class="eyebrow">Food</p><p class="back"><a href="food.html#${esc(SOLO)}">← 看全部美食</a></p>`;
+}
 render();
 const jump = () => { const h = location.hash.slice(1); const el = h && document.getElementById(h); if (el) el.scrollIntoView({block:'start'}); };
 jump(); window.addEventListener('load', jump);
@@ -405,6 +421,23 @@ jump(); window.addEventListener('load', jump);
   addEventListener('storage', sync); sync();
 })();
 
+
+/* ---------- 分享：每家店有自己的網頁 s/food-店.html、s/shop-店.html ---------- */
+(function(){
+  const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  function toast(html){
+    let t = document.getElementById('toast'); if (!t){ t = document.createElement('div'); t.id = 'toast'; t.className = 'toast'; t.setAttribute('role','status'); document.body.appendChild(t); }
+    t.innerHTML = html; t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => { t.hidden = true; }, 6000);
+  }
+  document.addEventListener('click', async e => {
+    const b = e.target.closest('[data-share-url]'); if (!b) return;
+    e.preventDefault();
+    const url = new URL(b.dataset.shareUrl, document.baseURI).href, title = b.dataset.shareTitle || document.title;
+    if (navigator.share){ try { await navigator.share({title, text: title, url}); return; } catch(err){ if (err && err.name === 'AbortError') return; } }
+    try { await navigator.clipboard.writeText(url); toast(`已複製「${esc(title)}」的連結，可以直接貼到 LINE`); }
+    catch(err){ toast(`長按下面的網址複製：<br><input class="tourl" readonly value="${esc(url)}" onclick="this.select()">`); const i = document.querySelector('#toast .tourl'); if (i) i.select(); }
+  });
+})();
 </script>
 </body>
 </html>
