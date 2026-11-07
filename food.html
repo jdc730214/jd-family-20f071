@@ -207,6 +207,14 @@ select,input{border-radius:10px!important}
 .basketfab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;background:var(--kin);color:#fff!important;text-decoration:none;font:700 15px var(--body);padding:12px 18px;border-radius:999px;box-shadow:0 8px 24px rgba(217,105,46,.35)}
 .basketfab b{font-family:var(--mono);background:#fff;color:var(--kin);border-radius:999px;padding:0 8px;margin:0 2px}
 .basketfab[hidden]{display:none!important}
+.fph{display:flex;gap:6px;overflow-x:auto;scroll-snap-type:x mandatory;background:var(--paper);scrollbar-width:none}
+.fph::-webkit-scrollbar{display:none}
+.fph figure{flex:0 0 88%;margin:0;scroll-snap-align:start;position:relative}
+.fph figure:only-child{flex-basis:100%}
+.fph img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;max-width:100%}
+.fph figcaption{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(0,0,0,.62));color:#fff;font-size:12.5px;padding:18px 10px 6px}
+.fph figcaption small{display:block;font-size:10px;opacity:.8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fph .fcount{position:absolute;top:8px;left:8px;background:rgba(0,0,0,.55);color:#fff;font:600 11px var(--mono);padding:2px 8px;border-radius:999px}
 
 .share{font:500 13px var(--body);border:1px solid var(--kin)!important;background:var(--kin-soft);color:var(--kin)!important;padding:4px 12px;border-radius:999px;cursor:pointer;margin-left:auto}
 .share::before{content:"↗ "}
@@ -316,7 +324,7 @@ header.site{background:rgba(255,255,255,.9)!important}
 </div></nav>
 <main class="wrap" id="list"></main>
 <footer class="wrap">
-  <p>卡片右上角的小圖是那道菜的示意照（Wikimedia Commons，作者與授權標在必吃美食區），不是該店實拍；店內照片請點「官網／Tabelog」看。</p>
+  <p>卡片上方的照片是該店的店面與料理，可以左右滑動，來源標在每張照片下方。還沒有實景照的店，右上角小圖是那道菜的示意照（Wikimedia Commons，作者與授權標在必吃美食區），不是該店實拍。</p>
   <p>打電話：在日本用當地門號直接撥頁面上的號碼；用台灣門號漫遊時，按電話連結會自動改成 +81 開頭。</p>
   <p>營業時間、價格、公休日會變動，熱門店常需排隊或預約，出發前請以官網或 Tabelog 為準（資料查核日 2026/10/3）。</p>
 </footer>
@@ -340,13 +348,15 @@ function match(r){
 }
 function card(r){
   const d = DISH[r.dish];
+  const ph = (r.photos||[]).length ? `<div class="fph" aria-label="${esc(r.name)} 照片">${r.photos.map((p,i) => `<figure><img src="${esc(p.file)}" alt="${esc(p.caption||r.name)}" loading="lazy" decoding="async"><figcaption>${esc(p.caption||'')}<small>${esc(p.credit||'')}</small></figcaption>${r.photos.length>1 ? `<span class="fcount">${i+1} / ${r.photos.length}</span>` : ''}</figure>`).join('')}</div>` : '';
   return `<article class="card" id="${esc(r.id)}">
+    ${ph}
     <div class="body">
       <div class="head">
         <div class="ht"><h4 class="name">${esc(r.name)}</h4>
           ${r.name_zh ? `<div class="zh">${esc(r.name_zh)}</div>` : ''}
           <div class="genre">${esc(r.genre)}　<span class="lv${r.level==='高'?' h':''}">${LV[r.level]||''} ${esc(r.level)}價</span></div></div>
-        ${d ? `<figure class="th"><img src="${esc(d.img)}" alt="" loading="lazy"><figcaption>示意</figcaption></figure>` : ''}
+        ${d && !(r.photos||[]).length ? `<figure class="th"><img src="${esc(d.img)}" alt="" loading="lazy"><figcaption>示意</figcaption></figure>` : ''}
       </div>
       <div class="sig"><b>招牌</b>${esc(r.signature)}</div>
       ${r.desc ? `<p class="desc">${esc(r.desc)}</p>` : ''}
