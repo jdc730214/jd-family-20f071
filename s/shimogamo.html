@@ -62,7 +62,7 @@ main{padding-block:16px 48px}
 .area{margin-top:12px}
 .area>h3{font:600 16px var(--display);color:var(--muted);margin:0 0 10px;padding-bottom:6px;border-bottom:1px dashed var(--line)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,460px),1fr));gap:18px}
-.card{scroll-margin-top:120px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.card{scroll-margin-top:120px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0;content-visibility:auto;contain-intrinsic-size:auto 900px}  /* 畫面外的卡片先不畫：景點多時捲動才不會卡 */
 
 .car{position:relative;aspect-ratio:16/10;background:var(--ai-soft);overflow:hidden;max-width:100%;touch-action:pan-y}
 .track{display:flex;height:100%;transition:transform .55s ease}
@@ -419,7 +419,9 @@ let io = null;
 function observe(){
   visible.clear(); if (io) io.disconnect();
   if (!('IntersectionObserver' in window)) return;
-  io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? visible.add(e.target) : visible.delete(e.target)), {threshold:.5});
+  // 輪播進入畫面就先載入第 2 張，自動換張時不會空白
+  const pre = c => { const im = c.querySelectorAll('.track img')[1]; if (im && im.dataset.src){ im.src = im.dataset.src; im.removeAttribute('data-src'); } };
+  io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ visible.add(e.target); pre(e.target); } else visible.delete(e.target); }), {threshold:.5});
   document.querySelectorAll('.car[data-id]').forEach(c => io.observe(c));
 }
 if (!reduce) setInterval(() => { for (const c of visible) if (!c.matches(':hover') && !c.contains(document.activeElement) && !c.dataset.hold) go(c, +c.dataset.i + 1); }, 4500);
