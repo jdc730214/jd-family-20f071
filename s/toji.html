@@ -236,7 +236,7 @@ select,input{border-radius:10px!important}
 .hero .back{margin:6px 0 0;font-size:15px}
 .hero .back a{color:var(--ai);font-weight:700;text-decoration:none}
 </style>
-<script src="jds.js?v=df76b0c4"></script>
+<script src="jds.js?v=7477b369"></script>
 <style id="taste">/* 極簡編輯：骨白底、白卡、1px 淡線、幾乎無陰影、墨黑主按鈕、低飽和藍點綴 */
 :root{--paper:#F7F6F3;--surface:#FFFFFF;--ink:#2F3437;--muted:#787774;--line:#EAEAEA;--ai:#1F6C9F;--ai-soft:#E1F3FE;--kin:#2F3437;--kin-soft:#F1F0EC;--warn:#9F2F2D;
 --shadow:0 2px 8px rgba(0,0,0,.04);--shadow-sm:0 0 0 rgba(0,0,0,0);--ease:cubic-bezier(.16,1,.3,1);--grain:none}
@@ -360,7 +360,7 @@ function card(s){
     ${carousel(s)}
     <div class="body">
       <h4 class="name">${esc(s.name)}</h4>
-      <div class="tagline"><span class="tag">${esc(s.areaLabel)}</span>${(s.tags||[]).includes('onsen') ? '<span class="tag">溫泉</span>' : ''}${(s.tags||[]).includes('winter') ? '<span class="tag">❄ 1–2 月推薦</span>' : ''}${s.book ? '<span class="tag book">有項目需先預約</span>' : ''}${(s.tags||[]).includes('new') ? '<span class="tag">🆕 新開幕</span>' : ''}${(s.tags||[]).includes('hidden') ? '<span class="tag">冷門秘境</span>' : ''}${(s.ota||[]).length ? `<span class="tag ota">${[...new Set(s.ota.map(o=>o.site))].join('／')} 有售</span>` : ''}</div>
+      <div class="tagline"><span class="tag">${esc(s.areaLabel)}</span>${(s.tags||[]).includes('onsen') ? '<span class="tag">溫泉</span>' : ''}${(s.tags||[]).includes('winter') ? '<span class="tag">❄ 1–2 月推薦</span>' : ''}${s.book ? '<span class="tag book">有項目需先預約</span>' : ''}${(s.tags||[]).includes('new') ? '<span class="tag">🆕 新開幕</span>' : ''}${(s.tags||[]).includes('hidden') ? '<span class="tag">冷門秘境</span>' : ''}${(s.tags||[]).includes('tour') ? '<span class="tag">🚌 一日遊團</span>' : ''}${(s.ota||[]).length ? `<span class="tag ota">${[...new Set(s.ota.map(o=>o.site))].join('／')} 有售</span>` : ''}</div>
       ${s.intro ? `<p class="intro">${esc(s.intro)}</p>` : ''}
       ${(s.highlights||[]).length ? `<ul class="hl">${s.highlights.map(h=>`<li>${esc(h)}</li>`).join('')}</ul>` : ''}
       <dl>${s.hours ? `<dt>時間</dt><dd>${esc(s.hours)}</dd>` : ''}${s.fee ? `<dt>門票</dt><dd>${esc(s.fee)}</dd>` : ''}${s.season ? `<dt>10–11月</dt><dd>${esc(s.season)}</dd>` : ''}
@@ -373,7 +373,7 @@ function card(s){
       <div class="links">${s.areaLabel==='我的住宿' ? '' : `<a class="go" href="route.html#${esc(s.id)}">地鐵怎麼去</a>`}<a href="${maps(s)}" target="_blank" rel="noopener">Google 地圖</a>${s.official ? `<a href="${esc(s.official)}" target="_blank" rel="noopener">官網</a>` : ''}<button type="button" class="share" data-share="${esc(s.id)}" aria-label="分享「${esc(s.name)}」">分享</button></div>
     </div></article>`;
 }
-function pool(){ const q = st.q.trim().toLowerCase(); return S.filter(s => (st.g==='all' || (st.g==='sub' ? s.sub : st.g==='ota' ? (s.ota||[]).length>0 : st.g==='new' ? (s.tags||[]).includes('new') : st.g==='hidden' ? (s.tags||[]).includes('hidden') : st.g==='onsen' ? (s.tags||[]).includes('onsen') : st.g==='winter' ? (s.tags||[]).includes('winter') : s.group===st.g)) && (!q || ((t, q) => window.JDS ? JDS.has(q, t) : t.toLowerCase().includes(q))([s.name,s.id,s.intro,s.areaLabel,(s.highlights||[]).join(' '),(s.ota||[]).map(o=>o.site+' '+o.label).join(' ')].join(' '), q))); }
+function pool(){ const q = st.q.trim().toLowerCase(); return S.filter(s => (st.g==='all' || (st.g==='sub' ? s.sub : st.g==='ota' ? (s.ota||[]).length>0 : st.g==='new' ? (s.tags||[]).includes('new') : st.g==='hidden' ? (s.tags||[]).includes('hidden') : st.g==='tour' ? (s.tags||[]).includes('tour') : st.g==='onsen' ? (s.tags||[]).includes('onsen') : st.g==='winter' ? (s.tags||[]).includes('winter') : s.group===st.g)) && (!q || ((t, q) => window.JDS ? JDS.has(q, t) : t.toLowerCase().includes(q))([s.name,s.id,s.intro,s.areaLabel,(s.highlights||[]).join(' '),(s.ota||[]).map(o=>o.site+' '+o.label).join(' ')].join(' '), q))); }
 function render(){
   if (SOLO){ renderList(); return; }
   const all = S.filter(s => !st.q || true);
@@ -382,7 +382,7 @@ function render(){
     `<button type="button" class="chip" data-g="winter" aria-pressed="${st.g==='winter'}">❄ 1–2 月推薦<span class="n">${S.filter(s=>(s.tags||[]).includes('winter')).length}</span></button>` +
     `<button type="button" class="chip" data-g="sub" aria-pressed="${st.g==='sub'}">近郊<span class="n">${S.filter(s=>s.sub).length}</span></button>` +
     `<button type="button" class="chip" data-g="onsen" aria-pressed="${st.g==='onsen'}">溫泉<span class="n">${S.filter(s=>(s.tags||[]).includes('onsen')).length}</span></button>` +
-    [['new','🆕 新開幕'],['hidden','冷門秘境']].filter(([k]) => S.some(s=>(s.tags||[]).includes(k))).map(([k,l]) => `<button type="button" class="chip" data-g="${k}" aria-pressed="${st.g===k}">${l}<span class="n">${S.filter(s=>(s.tags||[]).includes(k)).length}</span></button>`).join('') +
+    [['new','🆕 新開幕'],['hidden','冷門秘境'],['tour','🚌 一日遊團']].filter(([k]) => S.some(s=>(s.tags||[]).includes(k))).map(([k,l]) => `<button type="button" class="chip" data-g="${k}" aria-pressed="${st.g===k}">${l}<span class="n">${S.filter(s=>(s.tags||[]).includes(k)).length}</span></button>`).join('') +
     (S.some(s=>(s.ota||[]).length) ? `<button type="button" class="chip" data-g="ota" aria-pressed="${st.g==='ota'}">Klook／KKday 有售<span class="n">${S.filter(s=>(s.ota||[]).length).length}</span></button>` : '') +
     `<input class="search" id="q" type="search" placeholder="搜尋景點（可打同音字、注音、拼音）" aria-label="搜尋景點" value="${esc(st.q)}">`;
   $('#q').addEventListener('input', e => { st.q = e.target.value; renderList(); });
