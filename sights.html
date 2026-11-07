@@ -300,7 +300,7 @@ header.site{background:rgba(255,255,255,.9)!important}
 <body>
 <header class="site"><div class="wrap bar">
   <a class="brand" href="sights.html" aria-label="JD的旅遊規劃 首頁"><span class="logo"><img src="icon-sm.png" alt="JD"></span><span class="brand-t"><b>JD的旅遊規劃</b><small>Travel Notes 2026</small></span></a>
-  <nav class="sitetabs" aria-label="頁面"><a href="sights.html" aria-current="page">景點介紹</a><a href="food.html">美食介紹</a><a href="shops.html">想逛商家</a><a href="nearby.html">附近／地圖</a><a href="plan.html">行程規劃</a><a href="suggest.html">行程建議</a><a href="route.html">地鐵路線</a><a href="tickets.html">車票怎麼買</a><a href="expense.html">記帳</a></nav>
+  <nav class="sitetabs" aria-label="頁面"><a href="sights.html" aria-current="page">景點介紹</a><a href="food.html">美食介紹</a><a href="shops.html">想逛商家</a><a href="suggest.html">行程建議</a><a href="route.html">地鐵路線</a><a href="tickets.html">車票怎麼買</a></nav>
 </div></header>
 <section class="hero wrap">
   <p class="eyebrow">Sights</p>
@@ -346,7 +346,7 @@ function card(s){
       ${tr ? `<details><summary>交通方式比較</summary><div class="tkwrap"><table class="tk"><thead><tr><th>方式</th><th>單程</th><th>車資</th></tr></thead><tbody>${tr}</tbody></table></div></details>` : ''}
       ${tk ? `<details><summary>票價與訂票</summary><div class="tkwrap"><table class="tk"><thead><tr><th>票券</th><th>票價</th><th></th></tr></thead><tbody>${tk}</tbody></table></div></details>` : ''}
       ${(s.tips||[]).length ? `<details><summary>小提醒</summary><ul class="hl">${s.tips.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></details>` : ''}
-      <div class="links"><button type="button" class="addplan" data-plan="${s.areaLabel==='我的住宿'?'stay:':'landmark:'}${esc(s.id)}">＋行程</button><a class="go" href="route.html#${esc(s.id)}">地鐵怎麼去</a><a href="nearby.html#${esc(s.id)}">附近</a><a href="${maps(s)}" target="_blank" rel="noopener">Google 地圖</a>${s.official ? `<a href="${esc(s.official)}" target="_blank" rel="noopener">官網</a>` : ''}</div>
+      <div class="links"><a class="go" href="route.html#${esc(s.id)}">地鐵怎麼去</a><a href="${maps(s)}" target="_blank" rel="noopener">Google 地圖</a>${s.official ? `<a href="${esc(s.official)}" target="_blank" rel="noopener">官網</a>` : ''}</div>
     </div></article>`;
 }
 function pool(){ const q = st.q.trim().toLowerCase(); return S.filter(s => (st.g==='all' || (st.g==='sub' ? s.sub : st.g==='onsen' ? (s.tags||[]).includes('onsen') : s.group===st.g)) && (!q || ((t, q) => window.JDS ? JDS.has(q, t) : t.toLowerCase().includes(q))([s.name,s.id,s.intro,s.areaLabel,(s.highlights||[]).join(' ')].join(' '), q))); }
@@ -414,7 +414,7 @@ jump(); window.addEventListener('load', jump);
   const KEY = 'jd-basket';
   const get = () => { try { return JSON.parse(localStorage.getItem(KEY)||'[]'); } catch(e) { return []; } };
   const set = v => { try { localStorage.setItem(KEY, JSON.stringify(v)); } catch(e) {} };
-  const fab = document.createElement('a'); fab.className = 'basketfab'; fab.href = 'plan.html'; document.body.appendChild(fab);
+  const fab = document.createElement('a'); fab.className = 'basketfab'; fab.href = '#';
   function sync(){
     const b = get();
     fab.innerHTML = `行程籃 <b>${b.length}</b> → 排行程`; fab.hidden = !b.length;
